@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const sections = document.querySelectorAll("section");
 const navLinks = document.querySelectorAll(".menu-bar a");
 
@@ -20,3 +21,19 @@ window.addEventListener("scroll", () => {
     }
   });
 });
+=======
+const hamburger = document.querySelector(".hamburger");
+const menu_bar = document.querySelector(".navbar-menu .menu-bar");
+
+if (hamburger && menu_bar) {
+  hamburger.addEventListener("click", () => {
+    menu_bar.classList.toggle("show");
+  });
+
+  document.querySelectorAll(".navbar-menu .menu-bar a").forEach(link => {
+    link.addEventListener("click", () => {
+      menu_bar.classList.remove("show");
+    });
+  });
+}
+>>>>>>> 80b18ed559e1167c80b9104494f7a02536c75f73

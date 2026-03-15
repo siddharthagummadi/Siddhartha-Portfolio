@@ -3,6 +3,10 @@
   flex-direction: column;
   align-items: center;
   height: 80vh;
+<<<<<<< HEAD
+=======
+  scroll-snap-align: start;
+>>>>>>> 80b18ed559e1167c80b9104494f7a02536c75f73
   justify-content: center;
   gap: 50px;
   padding: 0;

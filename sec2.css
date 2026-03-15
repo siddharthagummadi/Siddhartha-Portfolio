@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .sec2{
 min-height:100vh;
 display:flex;
@@ -90,10 +91,114 @@ object-fit:contain;
 .box>:nth-child(2){
 font-size:19px;
 font-weight:600;
+=======
+.sec2 {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  scroll-snap-align: start;
+  justify-content: center;
+  padding: 0;
+}
+
+.sec-2-1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  padding: 0 16px;
+  gap: 8px;
+  margin-bottom: 30px;
+}
+
+.sec-2-1>:nth-child(1) {
+  font-weight: 600;
+}
+
+.sec-2-2 {
+  display: flex;
+  align-items: center;
+  gap: 80px;
+}
+
+.sec-2-2-1 {
+  margin-left: 150px;
+  position: relative;
+  display: grid;
+  place-items: center;
+  isolation: isolate;
+}
+
+.sec-2-2-1 img {
+  width: 400px;
+  height: 400px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  background: linear-gradient(#fff, #fff) padding-box,
+              conic-gradient(from 0deg, #003366, #00c3ff, #ff5f6d, #003366) border-box;
+  box-shadow: 0 18px 40px rgba(0,0,0,.16);
+}
+
+.sec-2-2-1::before {
+  content: "";
+  position: absolute;
+  width: 88%;
+  height: 88%;
+  border-radius: 50%;
+  z-index: -1;
+  background:
+    radial-gradient(40% 40% at 25% 25%, rgba(0,51,102,.22), transparent 60%),
+    radial-gradient(45% 45% at 75% 75%, rgba(255,95,109,.18), transparent 65%);
+  filter: blur(14px);
+  transform: scale(1.05);
+}
+
+.sec-2-2-2 {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.sec-2-2-2-1 {
+  display: flex;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 350px;
+  padding: 22px;
+  gap: 8px;
+  border-radius: 18px;
+  background: linear-gradient(#ffffff, #ffffff) padding-box,
+              linear-gradient(135deg, #003366, #00c3ff) border-box;
+  border: 2px solid transparent;
+  box-shadow: 0 10px 26px rgba(0,0,0,.12);
+}
+
+.box img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.box>:nth-child(2) {
+  font-size: 20px;
+  font-weight: 600;
+>>>>>>> 80b18ed559e1167c80b9104494f7a02536c75f73
 }
 
 .box>:nth-child(3),
 .box>:nth-child(4),
+<<<<<<< HEAD
 .box>:nth-child(5){
 font-size:15px;
 }
@@ -135,3 +240,76 @@ max-width:320px;
 }
 
 }
+=======
+.box>:nth-child(5) {
+  font-size: 17px;
+  text-align: center;
+}
+
+.p1 {
+  width: 80%;
+}
+
+@media (max-width: 1024px) {
+  .sec2 {
+    margin-top: 0px;
+    height: auto;
+    padding-bottom: 100px;
+  }
+
+  .sec-2-2 {
+    margin-top: 50px;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .sec-2-2-1 {
+    margin-left: 0px;
+  }
+
+  .sec-2-2-2 {
+    align-items: center;
+  }
+
+  .sec-2-2-1 img {
+    width: 320px;
+    height: 320px;
+  }
+}
+
+@media (max-width: 767px) {
+  .sec2 {
+    margin-top: 0;
+    height: auto;
+    padding-bottom: 100px;
+  }
+
+  .sec-2-2 {
+    margin-top: 50px;
+    flex-direction: column;
+    gap: 36px;
+  }
+
+  .sec-2-2-1 {
+    margin-left: 0px;
+  }
+
+  .sec-2-2-2 {
+    align-items: center;
+  }
+
+  .sec-2-2-2-1 {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .sec-2-2-1 img {
+    width: 250px;
+    height: 250px;
+  }
+
+  .box {
+    width: min(340px, 92vw);
+  }
+}
+>>>>>>> 80b18ed559e1167c80b9104494f7a02536c75f73
