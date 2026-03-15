@@ -1,530 +1,319 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<<<<<<< HEAD
-  <meta name="description" content="Portfolio of Siddhartha Gummadi – Aspiring Java Backend Developer focused on Data Structures, Spring Boot, and scalable system design.">
-  <meta name="keywords" content="Java backend developer portfolio, Spring Boot developer, Java projects, REST API developer, Siddhartha Gummadi">
-  <meta name="author" content="Siddhartha Gummadi">
+  <meta name="description"
+    content="Portfolio of Siddhartha Gummadi – Aspiring Java Backend Developer focused on Data Structures, Spring Boot, and scalable system design." />
+  <meta name="keywords"
+    content="Java backend developer portfolio, Spring Boot developer, Java projects, REST API developer, Siddhartha Gummadi" />
+  <meta name="author" content="Siddhartha Gummadi" />
 
   <title>Siddhartha Gummadi | Java Backend Developer</title>
-=======
-  <meta name="description" content="Portfolio of Siddhartha Gummadi – CSE student, AI/ML enthusiast, and web developer intern.">
-  <meta name="keywords" content="portfolio, AI, ML, web developer intern , projects, Siddhartha Gummadi">
-  <meta name="author" content="Siddhartha Gummadi">
 
-  <title>Siddhartha Gummadi | Portfolio</title>
->>>>>>> 80b18ed559e1167c80b9104494f7a02536c75f73
-
-  <!-- FontAwesome CDN -->
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-  <!-- External CSS -->
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="sec1.css" />
-  <link rel="stylesheet" href="sec2.css" />
-  <link rel="stylesheet" href="sec3.css" />
-  <link rel="stylesheet" href="sec4.css" />
-  <link rel="stylesheet" href="sec5.css" />
-  <link rel="stylesheet" href="sec6.css" />
-  <link rel="stylesheet" href="sec7.css" />
+  <link rel="stylesheet" href="main.css" />
 </head>
 
 <body>
- 
-  <!-- Desktop Navbar -->
+
+  <!--Desktop Navigation Bar-->
   <nav class="navbar" aria-label="Main Navigation">
-    <div class="logo">Gummadi Siddhartha</div>
+    <div class="logo-wrap">
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <linearGradient id="lg1" x1="0" y1="0" x2="36" y2="36" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#6366f1" />
+            <stop offset="50%" stop-color="#a855f7" />
+            <stop offset="100%" stop-color="#ec4899" />
+          </linearGradient>
+        </defs>
+        <rect width="36" height="36" rx="10" fill="url(#lg1)" />
+        <text x="50%" y="56%" dominant-baseline="middle" text-anchor="middle" font-family="Outfit, sans-serif"
+          font-weight="800" font-size="16" fill="#fff">GS</text>
+      </svg>
+      <span class="logo-text">Gummadi Siddhartha</span>
+    </div>
+
     <ul class="menu-bar">
       <li><a href="#about">About</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#projects">Projects</a></li>
-      <li><a href="#footer">Contact</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <button id="theme-toggle" aria-label="Toggle theme" title="Toggle theme">
+      <i class="fa-solid fa-moon"></i>
+    </button>
+  </nav>
+
+  <!--Mobile Navbar-->
+  <nav class="navbar-menu" aria-label="Mobile Navigation">
+    <div class="logo-wrap">
+      <svg width="32" height="32" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <linearGradient id="lg2" x1="0" y1="0" x2="36" y2="36" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#6366f1" />
+            <stop offset="50%" stop-color="#a855f7" />
+            <stop offset="100%" stop-color="#ec4899" />
+          </linearGradient>
+        </defs>
+        <rect width="36" height="36" rx="10" fill="url(#lg2)" />
+        <text x="50%" y="56%" dominant-baseline="middle" text-anchor="middle" font-family="Outfit, sans-serif"
+          font-weight="800" font-size="16" fill="#fff">GS</text>
+      </svg>
+      <span class="logo-text">Gummadi Siddhartha</span>
+    </div>
+    <div class="hamburger" id="hamburger" aria-label="Open menu" role="button" tabindex="0">
+      <i class="fa-solid fa-bars"></i>
+    </div>
+    <ul class="menu-bar" id="mobile-menu">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
 
-  <!-- Mobile Navbar -->
-  <nav class="navbar-menu">
-    <a class="logo" href="#">Gummadi Siddhartha</a>
-    <div class="hamburger"><i class="fa-solid fa-bars"></i></div>
-    <ul class="menu-bar">
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#footer">Contact</a></li>
-    </ul>
-  </nav>
- <!--Section 1--Hero Section -->
+  <!--Hero Section-->
   <section class="sec1" id="navbar">
-    <div class="sec-1-1">
-<<<<<<< HEAD
-      <img src="siddhu.jpeg" alt="Portrait of Siddhartha Gummadi" loading="lazy">
-=======
-      <img src="siddhu.jpg" alt="Portrait of Siddhartha Gummadi" loading="lazy">
->>>>>>> 80b18ed559e1167c80b9104494f7a02536c75f73
-    </div>
-    <div class="sec-1-2">
-      <span class="sec-1-2-1">Hello, I'm</span>
-      <h1>Gummadi Siddhartha</h1>
-<<<<<<< HEAD
-      <span class="sec-1-2-2">Aspiring Java Backend Developer</span>
-      <p>
-      Computer Science Engineering student currently beginning my journey into Java backend development. Actively learning Data Structures & Algorithms and core Java fundamentals, with the goal of building scalable backend systems using Spring Boot and MySQL.
-      </p>
-      <div class="btns">
-        <a href="Siddhartha-Resume(Flipkart Grid 7.0).pdf" download="Resume.pdf">Download CV</a>
-        <a href="https://github.com/siddharthagummadi" target="_blank">GitHub</a>
-=======
-      <span class="sec-1-2-2">Aspiring Intern</span>
-      <p>
-        A passionate Computer Science Engineering student specializing in Artificial Intelligence and Machine Learning.
-        I love transforming ideas into impactful digital solutions. With a strong foundation in Python, web development,
-        and AI technologies, I enjoy building intelligent systems and elegant user experiences. Currently, I'm exploring
-        innovative tech projects like SmartClass and SmartRank, blending creativity with problem-solving to make
-        real-world applications. I thrive on continuous learning and enjoy contributing to meaningful collaborations in tech.
-      </p>
-      <div class="btns">
-        <a href="Siddhartha-Resume(Flipkart Grid 7.0).pdf" download="Resume.pdf">Download CV</a>
-        <a href="tel:+91493585003" class="btn contact-btn">Contact Info</a>
->>>>>>> 80b18ed559e1167c80b9104494f7a02536c75f73
+    <div class="hero-inner">
+
+      <div class="hero-img-wrap reveal">
+        <img src="siddhu.jpeg" alt="Portrait of Siddhartha Gummadi" loading="eager" />
+      </div>
+
+      <div class="hero-text reveal" style="transition-delay:.15s">
+        <p class="hero-greeting"><span>👋</span> Hey there, I'm</p>
+        <h1 class="hero-name">Gummadi<br>Siddhartha</h1>
+        <p class="hero-role">Aspiring Java Backend Developer</p>
+        <p class="hero-desc">
+          Computer Science Engineering student learning Core Java, Data Structures &amp; Algorithms,
+          and backend system design — aiming to build scalable APIs with Spring Boot &amp; MySQL.
+        </p>
+
+        <div class="hero-socials">
+          <a href="https://github.com/siddharthagummadi" target="_blank" rel="noopener" aria-label="GitHub">
+            <i class="fa-brands fa-github"></i>
+          </a>
+          <a href="https://linkedin.com/in/siddhartha-gummadi-7951042b8" target="_blank" rel="noopener"
+            aria-label="LinkedIn">
+            <i class="fa-brands fa-linkedin-in"></i>
+          </a>
+          <a href="mailto:siddharthagummadi1605@gmail.com" aria-label="Email">
+            <i class="fa-solid fa-envelope"></i>
+          </a>
+        </div>
+
+        <div class="btns">
+          <a href="Siddhartha Gummadi - Resume.pdf" download="Siddhartha_Resume.pdf">
+            <i class="fa-solid fa-download"></i> Download CV
+          </a>
+          <a href="https://github.com/siddharthagummadi" target="_blank" rel="noopener">
+            <i class="fa-brands fa-github"></i> GitHub
+          </a>
+        </div>
       </div>
     </div>
   </section>
-   <!--Section 2--About me-->
-<<<<<<< HEAD
+
+  <!--About Section-->
   <section class="sec2" id="about">
-    <div class="sec-2-1">
-      <span>Get to know more</span>
-      <h1>About Me</h1>
+    <div class="section-head reveal">
+      <span class="section-label">Get to know more</span>
+      <h2 class="section-title">About Me</h2>
     </div>
-    <div class="sec-2-2">
-      <div class="sec-2-2-2">
-        <div class="sec-2-2-2-1">
-          <div class="box">
-            <i class="fa-solid fa-brain about-icon"></i>
-            <span>Currently Building</span>
-            <span>Core Java Fundamentals</span>
-            <span>Data Structures & Algorithms</span>
-            <span>SQL & Database Basics</span>
+
+    <div class="about-grid">
+      <div class="about-card reveal">
+        <div class="about-card-icon">
+          <i class="fa-solid fa-brain"></i>
+        </div>
+        <p class="about-card-title">Currently Building</p>
+        <ul>
+          <li>Core Java Fundamentals</li>
+          <li>Data Structures &amp; Algorithms</li>
+          <li>SQL &amp; Database Basics</li>
+        </ul>
+      </div>
+
+      <div class="about-card reveal" style="transition-delay:.1s">
+        <div class="about-card-icon">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </div>
+        <p class="about-card-title">Education</p>
+        <ul>
+          <li>B.Tech CSE – AVNIET</li>
+          <li>Intermediate – VVJC</li>
+          <li>SSC – MHS</li>
+        </ul>
+      </div>
+
+      <div class="about-card reveal" style="transition-delay:.2s">
+        <div class="about-card-icon">
+          <i class="fa-solid fa-server"></i>
+        </div>
+        <p class="about-card-title">Backend Focus</p>
+        <ul>
+          <li>REST API Development</li>
+          <li>Spring Boot &amp; Java</li>
+          <li>MySQL Database Design</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="about-bio reveal">
+      I'm a Computer Science Engineering student passionate about backend development.
+      I'm building strong foundations in OOP, system design, and RESTful APIs,
+      with the goal of creating scalable and maintainable server-side applications.
+    </p>
+  </section>
+
+  <!--Skills Section-->
+  <section class="sec4" id="skills">
+    <div class="section-head reveal">
+      <span class="section-label">What I know</span>
+      <h2 class="section-title">Skills</h2>
+    </div>
+
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <div class="skill-card-header">
+          <div class="skill-card-icon"><i class="fa-solid fa-code"></i></div>
+          <p class="skill-card-title">Programming</p>
+        </div>
+        <div class="skill-list">
+          <div class="skill-item">
+            <span class="skill-name">Java</span>
+            <span class="skill-level">Intermediate</span>
           </div>
-          <div class="box">
-            <i class="fa-solid fa-graduation-cap about-icon"></i>
-            <span>Education</span>
-            <span>B.Tech – AVNIET</span>
-            <span>Intermediate – VVJC</span>
-            <span>SSC – MHS</span>
+          <div class="skill-item">
+            <span class="skill-name">Python</span>
+            <span class="skill-level">Intermediate</span>
           </div>
-          <div class="box">
-            <i class="fa-solid fa-server about-icon"></i>
-            <span>Backend Focus</span>
-            <span>REST API Development</span>
-            <span>Spring Boot & Java</span>
-            <span>MySQL Database Design</span>
+          <div class="skill-item">
+            <span class="skill-name">C</span>
+            <span class="skill-level">Intermediate</span>
           </div>
         </div>
-        <div class="about-text">
-        <span class="backend-path">Backend-Focused Career Path</span>
-        <p class="p1">
-        Computer Science Engineering student focused on becoming a Java backend developer. 
-        Currently building strong foundations in Core Java, Object-Oriented Programming, 
-        and Data Structures while learning to design RESTful APIs and work with relational databases. 
-        Interested in developing scalable backend systems using Spring Boot and MySQL, 
-        with continuous improvement in problem-solving and system design fundamentals.
-       </p>
-       </div>
-       </div>
+      </div>
+
+      <div class="skill-card reveal" style="transition-delay:.1s">
+        <div class="skill-card-header">
+          <div class="skill-card-icon"><i class="fa-solid fa-layer-group"></i></div>
+          <p class="skill-card-title">Frontend</p>
+        </div>
+        <div class="skill-list">
+          <div class="skill-item">
+            <span class="skill-name">HTML</span>
+            <span class="skill-level">Intermediate</span>
+          </div>
+          <div class="skill-item">
+            <span class="skill-name">CSS</span>
+            <span class="skill-level">Intermediate</span>
+          </div>
+          <div class="skill-item">
+            <span class="skill-name">JavaScript</span>
+            <span class="skill-level">Basic</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="skill-card reveal" style="transition-delay:.2s">
+        <div class="skill-card-header">
+          <div class="skill-card-icon"><i class="fa-solid fa-lightbulb"></i></div>
+          <p class="skill-card-title">Soft Skills</p>
+        </div>
+        <div class="skill-list">
+          <div class="skill-item">
+            <span class="skill-name">Problem Solving</span>
+            <span class="skill-level">Analytical Thinking</span>
+          </div>
+          <div class="skill-item">
+            <span class="skill-name">Self Learning</span>
+            <span class="skill-level">Continuous</span>
+          </div>
+          <div class="skill-item">
+            <span class="skill-name">Communication</span>
+            <span class="skill-level">Clear Articulation</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
-   <!-- Section 3--Backend Projects
-   <section class="sec3" id="backend-projects">
-  <div class="sec-3-1">
-    <span>Explore my</span>
-    <h1>Backend Projects</h1>
-  </div>
-  <div class="sec-3-2">
-    <div class="box2">
-      <span>User Management API</span>
-      <div class="goals-1">
-        <div class="goals-1-2">
-          <span></span>
-          <span></span>
-        </div>
-      </div>
+
+  <!--Projects Section-->
+  <section class="sec5" id="projects">
+    <div class="section-head reveal">
+      <span class="section-label">Browse my recent</span>
+      <h2 class="section-title">Projects</h2>
     </div>
-    <div class="box2">
-      <span>Blog REST API</span>
-      <div class="goals-1">
-        <div class="goals-1-2">
-          <span></span>
-          <span></span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section> -->
-   <!--Section 4--skills-->
-    <section class="sec4" id="skills">
-  <div class="sec-4-1">
-    <span>Get a look at my</span>
-    <h1>Skills</h1>
-  </div>
-  <div class="sec-4-2">
-    <div class="box3">
-      <span>Programming</span>
-      <div class="skills">
-        <div class="skills-1">
-          <div class="skills-1-2">
-            <span>Java</span>
-            <span>Core Java & Object-Oriented Programming</span>
+
+    <div class="projects-grid">
+      <article class="project-card reveal">
+        <img class="project-img" src="smartclass.png" alt="SmartClass – Attendance Management System" loading="lazy" />
+        <div class="project-body">
+          <div class="project-tags">
+            <span class="project-tag">Python</span>
+            <span class="project-tag">Flask</span>
+            <span class="project-tag">OpenCV</span>
+            <span class="project-tag">MySQL</span>
           </div>
-        </div>
-        <div class="skills-1">
-          <div class="skills-1-2">
-            <span>Python</span>
-            <span>Intermediate</span>
-          </div>
-        </div>
-        <div class="skills-1">
-          <div class="skills-1-2">
-            <span>C</span>
-            <span>Intermediate</span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="box3">
-      <span>Frontend</span>
-      <div class="skills">
-        <div class="skills-1">
-          <div class="skills-1-2">
-            <span>HTML</span>
-            <span>Intermediate</span>
-          </div>
-        </div>
-        <div class="skills-1">
-          <div class="skills-1-2">
-            <span>CSS</span>
-            <span>Intermediate</span>
-          </div>
-        </div>
-        <div class="skills-1">
-          <div class="skills-1-2">
-            <span>JavaScript</span>
-            <span>Basic</span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="box3">
-      <span>Soft Skills</span>
-      <div class="skills">
-        <div class="skills-1">
-          <div class="skills-1-2">
-            <span>Problem Solving</span>
-            <span>Analytical Thinking</span>
-          </div>
-        </div>
-        <div class="skills-1">
-          <div class="skills-1-2">
-            <span>Self Learning</span>
-            <span>Continuous Improvement</span>
-          </div>
-        </div>
-        <div class="skills-1">
-          <div class="skills-1-2">
-            <span>Time Management</span>
-            <span>Task Prioritization</span>
-          </div>
-        </div>
-        <div class="skills-1">
-          <div class="skills-1-2">
-            <span>Communication</span>
-            <span>Clear Articulation</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-=======
-   <section class="sec2" id="about">
-    <div class="sec-2-1">
-      <span>Get to know more</span>
-      <h1>About Me</h1>
-      <div class="sec-2-2">
-        <div class="sec-2-2-1">
-          <img src="siddhu1.jpg" alt="Siddhartha Gummadi">
-        </div>
-        <div class="sec-2-2-2">
-          <div class="sec-2-2-2-1">
-            <div class="box">
-              <img src="goal.jpg" alt="goal">
-              <span>Goal</span>
-              <span><b>Innovate</b>- Think,Create,Evolve.</span>
-              <span><b>Build</b>- Design,Develop,Deliver.</span>
-              <span><b>Impact</b>- Inspire,Solve,Change.</span>
-            </div>
-             <div class="box">
-              <img src="education.png" alt="education">
-              <span>Education</span>
-              <span>B.Tech - AVNIET</span>
-              <span>Intermediate - VVJC</span>
-              <span>SSC - MHS</span>
-            </div>
-          </div>
-          <p class="p1"> 
-            A passionate Computer Science Engineering student specializing in Artificial Intelligence and Machine Learning. I love transforming ideas into impactful digital solutions. With a strong foundation in Python, web development, and AI technologies, I enjoy building intelligent systems and elegant user experiences.Currently, I'm exploring innovative tech projects like SmartClass and SmartRank, blending creativity with problem-solving to make real-world applications. I thrive on continuous learning and enjoy contributing to meaningful collaborations in tech.
+          <h3 class="project-name">SmartClass</h3>
+          <p class="project-desc">
+            A full-stack smart attendance management system featuring QR code scanning,
+            face recognition, role-based dashboards for admin/teacher/student, and
+            Excel &amp; PDF report generation.
           </p>
+          <div class="project-links">
+            <a class="project-link gh" href="https://github.com/Siddhu1608/SmartClass.git" target="_blank"
+              rel="noopener">
+              <i class="fa-brands fa-github"></i> GitHub
+            </a>
+            <a class="project-link live" href="https://smartclass.up.railway.app/" target="_blank" rel="noopener">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> Live
+            </a>
+          </div>
         </div>
-      </div>
+      </article>
     </div>
-   </section>
-   <!--Section 3--goals-->
-   <section class="sec3" id="goals">
-    <div class="sec-3-1">
-      <span>Explore my</span>
-       <h1>Goals</h1>
+  </section>
+
+  <!--Contact Section-->
+  <section class="sec6" id="contact">
+    <div class="section-head reveal">
+      <span class="section-label">Get in touch</span>
+      <h2 class="section-title">Contact Me</h2>
     </div>
-    <div class="sec-3-2">
-     <div class="box2">
-      <span>Short-Term Goals</span>
-        <div class="goals-1">
-          <img src="checkmark.png">
-          <div class="goals-1-2">
-          <span>Strengthen Core Skills</span>
-          <span>Master foundational technologies and frameworks</span>
-        </div>
-     </div>
-      <div class="goals-1">
-          <img src="checkmark.png">
-          <div class="goals-1-2">
-          <span>Build Real Projects</span>
-          <span>Apply concepts by developing hands-on, impactful applications</span>
-        </div>
-     </div>
-    <div class="goals-1">
-          <img src="checkmark.png">
-          <div class="goals-1-2">
-          <span>Contribute to Open Source</span>
-          <span>Start small and grow by collaborating with dev communities</span>
-        </div>
-     </div>
-     </div>
-        <div class="box2">
-      <span>Long-Term Goals</span>
-        <div class="goals-1">
-          <img src="checkmark.png">
-          <div class="goals-1-2">
-          <span>Become a Full-Stack Architect</span>
-          <span>Design and manage end-to-end systems with scalability in mind</span>
-        </div>
-     </div>
-      <div class="goals-1">
-          <img src="checkmark.png">
-          <div class="goals-1-2">
-          <span>Lead Tech Innovation</span>
-          <span>Drive solutions that make a real-world difference</span>
-        </div>
-     </div>
-    <div class="goals-1">
-          <img src="checkmark.png">
-          <div class="goals-1-2">
-          <span>Mentor & Inspire</span>
-          <span>Share knowledge, uplift others, and grow together</span>
-        </div>
-     </div>
-    </div>
-    </div>
-   </section>
-   <!--Section 4--skills-->
-    <section class="sec4" id="skills">
-      <div class="sec-4-1">
-        <span>Get a look at my</span>
-        <h1>Skills</h1>
-      </div>
-      <div class="sec-4-2">
-        <div class="box3">
-          <span>Frontend Skills</span>
-          <div class="skills">
-            <div class="skills-1">
-              <img src="checkmark.png" alt="checkmark">
-              <div class="skills-1-2">
-                <span>HTML</span>
-                <span>Intermediate</span>
-              </div>
-            </div>
-             <div class="skills-1">
-              <img src="checkmark.png" alt="checkmark">
-              <div class="skills-1-2">
-                <span>CSS</span>
-                <span>Intermediate</span>
-              </div>
-            </div>
-             <div class="skills-1">
-              <img src="checkmark.png" alt="checkmark">
-              <div class="skills-1-2">
-                <span>JavaScript</span>
-                <span>Basic</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="box3">
-          <span>Backend Skills</span>
-          <div class="skills">
-            <div class="skills-1">
-              <img src="checkmark.png" alt="checkmark">
-              <div class="skills-1-2">
-                <span>Python</span>
-                <span>Intermediate</span>
-              </div>
-            </div>
-             <div class="skills-1">
-              <img src="checkmark.png" alt="checkmark">
-              <div class="skills-1-2">
-                <span>Flask</span>
-                <span>Intermediate</span>
-              </div>
-            </div>
-             <div class="skills-1">
-              <img src="checkmark.png" alt="checkmark">
-              <div class="skills-1-2">
-                <span>MySQL</span>
-                <span>Intermediate</span>
-              </div>
-            </div>
-          </div>
-        </div>
-       <div class="box3">
-      <span>Other Skills</span>
-       <div class="skills">  
-       <div class="skills-1">
-      <img src="checkmark.png" alt="checkmark">
-      <div class="skills-1-2">
-        <span>Power BI</span>
-        <span>Basics</span>
-      </div>
-      </div>
-      <div class="skills-1">
-      <img src="checkmark.png" alt="checkmark">
-      <div class="skills-1-2">
-        <span>C</span>
-        <span>Intermediate</span>
-         </div>
-       </div>
-       </div>
-        </div>
-        <div class="box3">
-          <span>Soft Skills</span>
-          <div class="skills">
-            <div class="skills-1">
-              <img src="checkmark.png" alt="checkmark">
-              <div class="skills-1-2">
-                <span>Problem Solving</span>
-                <span>Strategy</span>
-              </div>
-            </div>
-             <div class="skills-1">
-              <img src="checkmark.png" alt="checkmark">
-              <div class="skills-1-2">
-                <span>Self-Learning</span>
-                <span>Initiative</span>
-              </div>
-            </div>
-             <div class="skills-1">
-              <img src="checkmark.png" alt="checkmark">
-              <div class="skills-1-2">
-                <span>Time Management</span>
-                <span>Precision</span>
-              </div>
-            </div>
-            <div class="skills-1">
-              <img src="checkmark.png" alt="checkmark">
-              <div class="skills-1-2">
-                <span>Communication</span>
-                <span>Articulation</span>
-              </div>
-            </div>
-        </div>
-      </div>
-    </section>
->>>>>>> 80b18ed559e1167c80b9104494f7a02536c75f73
-    <!--Section 5--projects-->
-    <section class="sec5" id="projects">
-      <div class="sec-5-1">
-        <span>Browse my recent</span>
-        <h1>Projects</h1>
-      </div>
-      <div class="sec-5-2">
-        <div class="box4">
-          <img src="smartclass.png" alt="smartclass">
-          <div class="box4-2">
-            <span>SmartClass</span>
-              <div class="btns">
-                <a class="a1" href="https://github.com/Siddhu1608/SmartClass.git">GitHub</a>
-<<<<<<< HEAD
-                <a href="https://smartclass.up.railway.app" target="_blank">Live Demo</a>
-              </div>
-          </div>
-        </div>
-=======
-                <a href="SmartClass-Project Report.pdf" download="smartclass.pdf">Documentation</a>
-              </div>
-          </div>
-        </div>
-        <div class="box4">
-          <img src="page.jpg" alt="project2">
-          <div class="box4-2">
-            <span>Project2</span>
-              <div class="btns">
-                <button>GitHub</button>
-                <button>Documentation</button>
-              </div>
-          </div>
-          </div>
-          <div class="box4">
-          <img src="page.jpg" alt="project3">
-          <div class="box4-2">
-            <span>Project3</span>
-              <div class="btns">
-                <button>GitHub</button>
-                <button>Documentation</button>
-              </div>
-      </div>
->>>>>>> 80b18ed559e1167c80b9104494f7a02536c75f73
-      </div>
-    </section>
-    <!--Section 6--contact-->
-    <section class="sec6" id="contact">
-      <div class="sec-6-1">
-        <span>Get in touch</span>
-        <h1>Contact Me</h1>
-      </div>
-      <div class="sec-6-2">
-        <a class="a1" href="mailto:siddharthagummadi1605@gmail.com">
-<<<<<<< HEAD
-        <i class="fa-solid fa-envelope contact-icon"></i>
+
+    <div class="contact-row reveal">
+      <a class="contact-chip" href="mailto:siddharthagummadi1605@gmail.com">
+        <i class="fa-solid fa-envelope"></i>
         <span>siddharthagummadi1605@gmail.com</span>
-        </a>
-        <a class="a2" href="https://linkedin.com/in/siddhartha-gummadi-7951042b8 "><i class="fa-brands fa-linkedin contact-icon"></i>
-=======
-        <img src="email.png" alt="Email Siddhartha Gummadi">
-        <span>siddharthagummadi1605@gmail.com</span>
-        </a>
-        <a class="a2" href="https://linkedin.com/in/siddhartha-gummadi-7951042b8 "><img src="linkedin.png" alt="LinkedIn">
->>>>>>> 80b18ed559e1167c80b9104494f7a02536c75f73
-        <span>LinkedIn</span></a>
-      </div>
-    </section>
-    <!--Section 7--footer-->
-    <section class="sec7" id="footer">
-    <span>Copyright &#169;2025 Siddhartha Gummadi.All Rights Reserved.</span>
-    </section>
+      </a>
+      <a class="contact-chip" href="https://linkedin.com/in/siddhartha-gummadi-7951042b8" target="_blank"
+        rel="noopener">
+        <i class="fa-brands fa-linkedin-in"></i>
+        <span>siddhartha-gummadi</span>
+      </a>
+      <a class="contact-chip" href="tel:+919493585003">
+        <i class="fa-solid fa-phone"></i>
+        <span>+91 9493585003</span>
+      </a>
+    </div>
+  </section>
+
+  <!--Footer-->
+  <footer class="sec7" id="footer">
+    <span class="footer-brand">Gummadi Siddhartha</span>
+    <span class="footer-copy">&#169; 2025 Siddhartha Gummadi. All Rights Reserved.</span>
+  </footer>
+
   <script src="script.js"></script>
 </body>
+
 </html>
