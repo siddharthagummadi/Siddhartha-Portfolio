@@ -126,14 +126,21 @@ document.addEventListener("DOMContentLoaded", () => {
             
             let errorMsg = "Oops! I encountered an error. Please try again later.";
             
+            // Safe access to window.location properties
+            const hostname = window?.location?.hostname || "";
+            const port = window?.location?.port || "";
+            const protocol = window?.location?.protocol || "";
+
             if (error.message.includes("503") || error.message.includes("high demand")) {
                 errorMsg = "I'm currently busy assisting a few other visitors! 😅 Please wait just a moment and try sending your message again.";
-            } else if (window.location.hostname === "127.0.0.1" && window.location.port === "5500") {
+            } else if (hostname === "127.0.0.1" && port === "5500") {
                 errorMsg = "Connection Error: You are using Live Server (port 5500). Please open the project via <strong>http://localhost:3000</strong> to use the chatbot.";
-            } else if (window.location.protocol === "file:") {
+            } else if (protocol === "file:") {
                 errorMsg = "Local Connection Error: Please run the server to use the chatbot.";
             } else if (error.message.includes("Status: 404")) {
                 errorMsg = "API Error: The chat service was not found. Are you running the backend server?";
+            } else if (error.message.includes("GEMINI_API_KEY")) {
+                errorMsg = "Configuration Error: The AI service is not configured correctly on the server.";
             }
 
             appendMessage("bot", errorMsg);

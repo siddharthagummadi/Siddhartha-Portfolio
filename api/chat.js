@@ -67,7 +67,17 @@ Use Markdown formatting for better readability:
 
     return res.status(200).json({ text });
   } catch (error) {
-    console.error("Gemini API Error:", error);
-    return res.status(500).json({ error: "Failed to fetch response from AI assistant." });
+    console.error("Gemini API Error Detail:", {
+      message: error.message,
+      stack: error.stack,
+      status: error.status || "N/A"
+    });
+    
+    // Check for specific error types to provide better feedback
+    if (error.message?.includes("API_KEY") || error.message?.includes("key")) {
+      return res.status(500).json({ error: "System configuration error: Invalid GEMINI_API_KEY. Please check Vercel environment variables." });
+    }
+
+    return res.status(500).json({ error: "Failed to fetch response from AI assistant. " + (error.message || "") });
   }
 }
