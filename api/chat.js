@@ -42,7 +42,7 @@ export default async function handler(req, res) {
   try {
     const model = genAI.getGenerativeModel({ 
       model: "gemini-1.5-flash",
-      systemInstruction: `You are SidBot, a personal AI assistant for Siddhartha Gummadi's portfolio website. 
+      systemInstruction: `You are Sarathi, a personal AI assistant for Siddhartha Gummadi's portfolio website. 
       Use the following information to answer questions about Siddhartha:
       ${PORTFOLIO_DATA}
       

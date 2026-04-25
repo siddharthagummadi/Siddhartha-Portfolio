@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const typingIndicator = document.querySelector(".typing-indicator");
     const suggestedBtns = document.querySelectorAll(".suggested-btn");
 
-    let chatHistory = JSON.parse(localStorage.getItem("sidbot_history")) || [];
+    let chatHistory = JSON.parse(localStorage.getItem("sarathi_history")) || [];
 
     // Toggle Chat Window
     launcher.addEventListener("click", () => {

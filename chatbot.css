@@ -1,18 +1,21 @@
 /* Premium Chatbot UI Styles */
 :root {
     --primary-gradient: linear-gradient(135deg, #6366f1, #a855f7, #ec4899);
-    --glass-bg: rgba(255, 255, 255, 0.8);
+    --glass-bg: rgba(255, 255, 255, 0.95); /* Increased opacity from 0.8 */
     --glass-blur: blur(12px);
-    --glass-border: rgba(255, 255, 255, 0.3);
-    --chat-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-    --bot-msg-bg: #f3f4f6;
+    --glass-border: rgba(99, 102, 241, 0.2);
+    --chat-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    --bot-msg-bg: #f0f2f5; /* Slightly darker */
+    --bot-msg-text: #1f2937;
     --user-msg-bg: #6366f1;
+    --user-msg-text: #ffffff;
 }
 
 [data-theme="dark"] {
-    --glass-bg: rgba(17, 24, 39, 0.85);
-    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-bg: rgba(26, 32, 44, 0.98); /* Much more opaque for dark mode */
+    --glass-border: rgba(255, 255, 255, 0.15);
     --bot-msg-bg: #2d3748;
+    --bot-msg-text: #f9fafb;
     --user-msg-bg: #6366f1;
 }
 
@@ -166,14 +169,14 @@
 .bot-message {
     align-self: flex-start;
     background: var(--bot-msg-bg);
-    color: inherit;
+    color: var(--bot-msg-text);
     border-bottom-left-radius: 2px;
 }
 
 .user-message {
     align-self: flex-end;
     background: var(--user-msg-bg);
-    color: white;
+    color: var(--user-msg-text);
     border-bottom-right-radius: 2px;
 }
 
@@ -238,13 +241,21 @@
 
 #chat-input {
     flex: 1;
-    background: transparent;
+    background: rgba(0, 0, 0, 0.05);
     border: 1px solid var(--glass-border);
     padding: 12px 15px;
     border-radius: 25px;
     font-size: 14px;
     outline: none;
-    color: inherit;
+    color: var(--bot-msg-text);
+}
+
+#chat-input::placeholder {
+    color: #9ca3af;
+}
+
+[data-theme="dark"] #chat-input {
+    background: rgba(255, 255, 255, 0.05);
 }
 
 #chat-send {
