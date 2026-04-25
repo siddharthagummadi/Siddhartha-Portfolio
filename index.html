@@ -17,6 +17,7 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <link rel="stylesheet" href="main.css" />
+  <link rel="stylesheet" href="chatbot.css" />
 </head>
 
 <body>
@@ -311,7 +312,51 @@
 
 
 
+
+  <!-- Chatbot Launcher -->
+  <div id="chatbot-launcher" aria-label="Open chat assistant">
+    <i class="fa-solid fa-comment-dots"></i>
+  </div>
+
+  <!-- Chatbot Window -->
+  <div id="chatbot-window">
+    <div class="chatbot-header">
+      <div class="chatbot-info">
+        <div class="chatbot-avatar">SG</div>
+        <div class="chatbot-name">
+          <h3>SidBot</h3>
+          <p>Personal Assistant</p>
+        </div>
+      </div>
+      <div class="chatbot-close"><i class="fa-solid fa-xmark"></i></div>
+    </div>
+
+    <div class="chatbot-messages">
+      <div class="message bot-message">Hi! I'm SidBot, Siddhartha's AI assistant. How can I help you today?</div>
+      <div class="typing-indicator">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+    </div>
+
+    <div class="suggested-questions">
+      <button class="suggested-btn">Who is Siddhartha?</button>
+      <button class="suggested-btn">What are his skills?</button>
+      <button class="suggested-btn">Tell me about SmartClass</button>
+      <button class="suggested-btn">How to contact him?</button>
+    </div>
+
+    <div class="chatbot-input-area">
+      <input type="text" id="chat-input" placeholder="Type a message..." aria-label="Chat input" />
+      <button id="chat-send" aria-label="Send message">
+        <i class="fa-solid fa-paper-plane"></i>
+      </button>
+    </div>
+  </div>
+
   <script src="script.js"></script>
+  <script src="chatbot.js"></script>
 </body>
 
 </html>
