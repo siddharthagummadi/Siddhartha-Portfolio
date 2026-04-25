@@ -141,6 +141,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 errorMsg = "API Error: The chat service was not found. Are you running the backend server?";
             } else if (error.message.includes("GEMINI_API_KEY")) {
                 errorMsg = "Configuration Error: The AI service is not configured correctly on the server.";
+            } else {
+                // If it's a specific error from the backend, show it
+                errorMsg = error.message;
             }
 
             appendMessage("bot", errorMsg);
