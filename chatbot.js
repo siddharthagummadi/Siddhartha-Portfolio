@@ -54,7 +54,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const data = await response.json();
 
-            if (data.error) throw new Error(data.error);
+            if (response.status !== 200 || data.error) {
+                throw new Error(data.error || `Server returned ${response.status}`);
+            }
 
             showTyping(false);
             appendMessage("bot", data.text);
