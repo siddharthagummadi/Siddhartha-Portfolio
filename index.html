@@ -309,6 +309,53 @@
     </div>
   </footer>
 
+  <!-- Chatbot -->
+  <div id="sid-bot-container">
+    <button id="sid-bot-toggle" aria-label="Open SidBot" title="Chat with SidBot">
+      <i class="fa-solid fa-message"></i>
+    </button>
+    
+    <div id="sid-bot-window" class="hidden">
+      <div class="sid-bot-header">
+        <div class="sid-bot-info">
+          <div class="sid-bot-avatar">GS</div>
+          <div>
+            <p class="sid-bot-title">SidBot</p>
+            <p class="sid-bot-status">Agentic AI</p>
+          </div>
+        </div>
+        <button id="sid-bot-close" aria-label="Close Chat">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      
+      <!-- Hidden AI Settings (Triggered by Triple-Click on Header) -->
+      <div id="sid-bot-settings" class="hidden">
+        <p class="settings-title">Developer Mode: Gemini Key</p>
+        <p class="settings-desc">This is for local testing ONLY. Once you deploy, use your hosting dashboard's Environment Variables.</p>
+        <div class="settings-input">
+          <input type="password" id="sid-bot-api-key" placeholder="Paste Gemini API Key...">
+          <button id="sid-bot-save-key">Save</button>
+        </div>
+      </div>
+      
+      <div id="sid-bot-messages">
+        <!-- Messages will be injected here -->
+      </div>
+      
+      <div id="sid-bot-suggestions">
+        <!-- Suggested question chips -->
+      </div>
+      
+      <div id="sid-bot-input-area">
+        <input type="text" id="sid-bot-input" placeholder="Type a message..." aria-label="Type a message">
+        <button id="sid-bot-send" aria-label="Send message">
+          <i class="fa-solid fa-paper-plane"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <script src="script.js"></script>
 </body>
 
