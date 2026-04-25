@@ -12,6 +12,7 @@ dist/
 build/
 
 # Local Environment
+.env
 .env.local
 .env.*.local
 

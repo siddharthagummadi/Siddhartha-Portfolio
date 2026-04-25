@@ -1,4 +1,16 @@
-# Professional Portfolio - Gummadi Siddhartha
+# Siddhartha Gummadi Portfolio
+
+This is my professional portfolio website, showcasing my education, skills, and projects in the field of Computer Science (AI & ML).
+
+## 🦾 Sarathi - AI Assistant
+I have integrated **Sarathi**, a premium AI assistant powered by the Gemini API. Sarathi can answer questions about my background, projects (like SmartClass), and professional goals.
+
+### Local Development
+To run the project locally with the chatbot:
+1. `npm install`
+2. Configure your Gemini API Key in a `.env` file.
+3. `npm start`
+4. Visit `http://localhost:3000`
 
 A modern, responsive personal portfolio website designed to showcase projects, skills, and technical expertise. Built with a focus on performance, clean aesthetics, and interactive user experience.
 

@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const sendBtn = document.getElementById("chat-send");
     const messagesContainer = document.querySelector(".chatbot-messages");
     const typingIndicator = document.querySelector(".typing-indicator");
-    const suggestedBtns = document.querySelectorAll(".suggested-btn");
 
     let chatHistory = JSON.parse(localStorage.getItem("sarathi_history")) || [];
 
@@ -28,12 +27,14 @@ document.addEventListener("DOMContentLoaded", () => {
         window.classList.remove("active");
     });
 
-    // Send Message
-    const sendMessage = async (text) => {
+    // Send Message with Retry Logic
+    const sendMessage = async (text, retryCount = 0) => {
         if (!text.trim()) return;
 
-        appendMessage("user", text);
-        chatInput.value = "";
+        if (retryCount === 0) {
+            appendMessage("user", text);
+            chatInput.value = "";
+        }
         showTyping(true);
 
         try {
@@ -42,6 +43,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ message: text, history: chatHistory })
             });
+
+            console.log("Sarathi Response Status:", response.status);
+            
+            if (response.status === 503 && retryCount < 2) {
+                console.log(`Service busy, retrying... (${retryCount + 1})`);
+                setTimeout(() => sendMessage(text, retryCount + 1), 2000);
+                return;
+            }
 
             const data = await response.json();
 
@@ -54,14 +63,22 @@ document.addEventListener("DOMContentLoaded", () => {
             chatHistory.push({ role: "user", parts: [{ text }] });
             chatHistory.push({ role: "model", parts: [{ text: data.text }] });
             
-            // Limit history to last 10 messages to keep context short and fast
             if (chatHistory.length > 10) chatHistory = chatHistory.slice(-10);
-            localStorage.setItem("sidbot_history", JSON.stringify(chatHistory));
+            localStorage.setItem("sarathi_history", JSON.stringify(chatHistory));
 
         } catch (error) {
-            console.error("Chat Error:", error);
+            console.error("Sarathi Chat Error:", error);
             showTyping(false);
-            appendMessage("bot", "Oops! I encountered an error. Please try again later or reach out to Siddhartha directly.");
+            
+            let errorMsg = "Oops! I encountered an error. Please try again later.";
+            
+            if (error.message.includes("503") || error.message.includes("high demand")) {
+                errorMsg = "I'm currently busy assisting a few other visitors! 😅 Please wait just a moment and try sending your message again. I'd love to help you!";
+            } else if (typeof window !== "undefined" && window.location && window.location.protocol === "file:") {
+                errorMsg = "Local Connection Error: The chatbot requires a server to work. Please run 'npm start' and open http://localhost:3000";
+            }
+
+            appendMessage("bot", errorMsg);
         }
     };
 
@@ -91,9 +108,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
     chatInput.addEventListener("keypress", (e) => {
         if (e.key === "Enter") sendMessage(chatInput.value);
-    });
-
-    suggestedBtns.forEach(btn => {
-        btn.addEventListener("click", () => sendMessage(btn.textContent));
     });
 });

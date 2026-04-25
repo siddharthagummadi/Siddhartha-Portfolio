@@ -1,7 +1,21 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
-import dotenv from "dotenv";
+import express from 'express';
+import { GoogleGenerativeAI } from '@google/generative-ai';
+import dotenv from 'dotenv';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import cors from 'cors';
 
 dotenv.config();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const app = express();
+const port = 3000;
+
+app.use(cors());
+app.use(express.json());
+app.use(express.static(__dirname));
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
 
@@ -20,42 +34,38 @@ Information about Siddhartha Gummadi:
     - SmartClass: A full-stack attendance management system using Python, Flask, OpenCV, and MySQL. Features QR scanning, face recognition, and reporting.
 - Contact:
     - Email: siddharthagummadi1605@gmail.com
-    - Portfolio: siddharthagummadi.github.io
     - LinkedIn: linkedin.com/in/siddhartha-gummadi-7951042b8
     - GitHub: github.com/siddharthagummadi
-- Quote: "Knowledge is the greatest wealth." (Vidyā Dhanaṁ Sarva-Dhana-Pradhānam).
-- Personality: Professional, enthusiastic about AI/ML, helpful, and creative.
+- Quote: "Knowledge is the greatest wealth."
 `;
 
-export default async function handler(req, res) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
-  }
-
+app.post('/api/chat', async (req, res) => {
   const { message, history } = req.body;
 
-  if (!message) {
-    return res.status(400).json({ error: 'Message is required' });
+  if (!process.env.GEMINI_API_KEY) {
+    return res.status(500).json({ error: "GEMINI_API_KEY is missing in .env file" });
   }
 
   try {
     const model = genAI.getGenerativeModel({ model: "gemini-flash-latest" });
 
-    const chat = model.startChat({
+    const chat = model.startChat({ 
       history: [
         { role: "user", parts: [{ text: `You are Sarathi, Siddhartha's personal AI assistant. Use this data: ${PORTFOLIO_DATA}. Answer questions about Siddhartha's background, skills, and projects concisely.` }] },
         { role: "model", parts: [{ text: "Understood. I am Sarathi. I will help visitors learn about Siddhartha." }] },
-        ...(history || []),
+        ...(history || [])
       ]
     });
-
     const result = await chat.sendMessage(message);
     const response = await result.response;
-    const text = response.text();
-
-    return res.status(200).json({ text });
+    res.json({ text: response.text() });
   } catch (error) {
-    console.error("Gemini API Error:", error);
-    return res.status(500).json({ error: "Failed to fetch response from AI assistant." });
+    console.error(error);
+    res.status(500).json({ error: error.message });
   }
-}
+});
+
+app.listen(port, () => {
+  console.log(`Local server running at http://localhost:${port}`);
+  console.log(`Make sure GEMINI_API_KEY is set in your .env file!`);
+});
