@@ -5,7 +5,7 @@
 
 document.addEventListener("DOMContentLoaded", () => {
     const launcher = document.getElementById("chatbot-launcher");
-    const window = document.getElementById("chatbot-window");
+    const chatbotWindow = document.getElementById("chatbot-window");
     const closeBtn = document.querySelector(".chatbot-close");
     const chatInput = document.getElementById("chat-input");
     const sendBtn = document.getElementById("chat-send");
@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Toggle Chat Window
     launcher.addEventListener("click", () => {
-        window.classList.add("active");
+        chatbotWindow.classList.add("active");
         if (messagesContainer.children.length === 1 && chatHistory.length === 0) {
             // Optional: Add a small delay for the welcome message to feel more natural
         } else if (messagesContainer.children.length === 1 && chatHistory.length > 0) {
@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     closeBtn.addEventListener("click", () => {
-        window.classList.remove("active");
+        chatbotWindow.classList.remove("active");
     });
 
     // Suggested Questions Logic
@@ -98,7 +98,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            const data = await response.json();
+            let data;
+            try {
+                data = await response.json();
+            } catch (jsonErr) {
+                console.error("JSON Parse Error:", jsonErr);
+                throw new Error(`Invalid response from server (Status: ${response.status})`);
+            }
 
             if (response.status !== 200 || data.error) {
                 throw new Error(data.error || `Server returned ${response.status}`);
@@ -119,10 +125,15 @@ document.addEventListener("DOMContentLoaded", () => {
             showTyping(false);
             
             let errorMsg = "Oops! I encountered an error. Please try again later.";
+            
             if (error.message.includes("503") || error.message.includes("high demand")) {
                 errorMsg = "I'm currently busy assisting a few other visitors! 😅 Please wait just a moment and try sending your message again.";
+            } else if (window.location.hostname === "127.0.0.1" && window.location.port === "5500") {
+                errorMsg = "Connection Error: You are using Live Server (port 5500). Please open the project via <strong>http://localhost:3000</strong> to use the chatbot.";
             } else if (window.location.protocol === "file:") {
                 errorMsg = "Local Connection Error: Please run the server to use the chatbot.";
+            } else if (error.message.includes("Status: 404")) {
+                errorMsg = "API Error: The chat service was not found. Are you running the backend server?";
             }
 
             appendMessage("bot", errorMsg);
@@ -130,10 +141,55 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     // UI Helpers
+    function formatMarkdown(text) {
+        if (!text) return "";
+        
+        // 1. Handle Bold: **text**
+        let formatted = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        
+        // 2. Handle Lists: Lines starting with * or -
+        const lines = formatted.split('\n');
+        let inList = false;
+        let finalHtml = '';
+        
+        lines.forEach(line => {
+            const trimmedLine = line.trim();
+            const listMatch = trimmedLine.match(/^[\*\-]\s+(.*)/);
+            
+            if (listMatch) {
+                if (!inList) {
+                    finalHtml += '<ul style="margin: 8px 0; padding-left: 20px; list-style-type: disc;">';
+                    inList = true;
+                }
+                finalHtml += `<li style="margin-bottom: 4px;">${listMatch[1]}</li>`;
+            } else {
+                if (inList) {
+                    finalHtml += '</ul>';
+                    inList = false;
+                }
+                if (trimmedLine) {
+                    finalHtml += line + '<br>';
+                } else {
+                    finalHtml += '<br>';
+                }
+            }
+        });
+        
+        if (inList) finalHtml += '</ul>';
+        
+        return finalHtml.replace(/(<br>)+$/, ''); // Remove trailing breaks
+    }
+
     function appendMessage(role, text) {
         const msgDiv = document.createElement("div");
         msgDiv.className = `message ${role}-message`;
-        msgDiv.textContent = text;
+        
+        if (role === "bot") {
+            msgDiv.innerHTML = formatMarkdown(text);
+        } else {
+            msgDiv.textContent = text;
+        }
+        
         messagesContainer.appendChild(msgDiv);
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
     }

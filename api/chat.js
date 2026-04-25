@@ -49,7 +49,13 @@ export default async function handler(req, res) {
 
     const chat = model.startChat({
       history: [
-        { role: "user", parts: [{ text: `You are Sarathi, Siddhartha's personal AI assistant. Use this data: ${PORTFOLIO_DATA}. Answer questions about Siddhartha's background, skills, and projects concisely.` }] },
+        { role: "user", parts: [{ text: `You are Sarathi, Siddhartha's personal AI assistant. Use this data: ${PORTFOLIO_DATA}. 
+
+Answer questions about Siddhartha's background, skills, and projects concisely. 
+Use Markdown formatting for better readability:
+- Use **bold** for emphasis (e.g., job titles, degree names).
+- Use bullet points (*) for lists.
+- Keep responses professional and helpful.` }] },
         { role: "model", parts: [{ text: "Understood. I am Sarathi. I will help visitors learn about Siddhartha." }] },
         ...(history || []),
       ]
