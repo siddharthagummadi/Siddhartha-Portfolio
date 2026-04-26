@@ -687,28 +687,47 @@ a {
 
 .skill-item {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  gap: 8px;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: transform var(--transition);
 }
 
-.skill-item::before {
-  content: '▸';
+.skill-item:hover {
+  transform: translateX(5px);
+}
+
+.skill-item-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.skill-item-icon {
+  width: 20px;
+  text-align: center;
+  font-size: 1.1rem;
   color: var(--clr-primary);
-  font-size: 11px;
-  flex-shrink: 0;
+  transition: transform var(--transition), color var(--transition);
+}
+
+.skill-item:hover .skill-item-icon {
+  transform: scale(1.2);
+  color: var(--clr-secondary);
 }
 
 .skill-name {
-  font-size: 13px;
+  font-size: 13.5px;
   font-weight: 600;
   color: var(--clr-text);
-  flex: 1;
 }
 
 .skill-level {
   color: var(--clr-muted);
-  font-size: 12px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .sec5 {
