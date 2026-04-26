@@ -1,31 +1,24 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import dotenv from "dotenv";
 
+import fs from "fs";
+import path from "path";
+
 dotenv.config();
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
 
-const PORTFOLIO_DATA = `
-Information about Siddhartha Gummadi:
-- Role: Aspiring Software Developer (CSE AI & ML Student).
-- Education: 
-    - B.Tech in CSE (AI & ML) at AVN Institute of Engineering and Technology (2023-2027).
-    - Intermediate (MPC) at Vidya Vikas Junior College (2021-2023).
-    - SSC at Matrix High School (2020-2021).
-- Skills:
-    - Programming: Java, Python, C (Intermediate).
-    - Frontend: HTML, CSS (Intermediate), JavaScript (Basic).
-    - Soft Skills: Problem Solving, Self Learning, Communication.
-- Projects:
-    - SmartClass: A full-stack attendance management system using Python, Flask, OpenCV, and MySQL. Features QR scanning, face recognition, and reporting.
-- Contact:
-    - Email: siddharthagummadi1605@gmail.com
-    - Portfolio: siddharthagummadi.github.io
-    - LinkedIn: linkedin.com/in/siddhartha-gummadi-7951042b8
-    - GitHub: github.com/siddharthagummadi
-- Quote: "Knowledge is the greatest wealth." (Vidyā Dhanaṁ Sarva-Dhana-Pradhānam).
-- Personality: Professional, enthusiastic about AI/ML, helpful, and creative.
-`;
+// Helper to get portfolio data as string for AI context
+function getPortfolioContext() {
+  try {
+    const dataPath = path.join(process.cwd(), 'assets', 'data', 'portfolio.json');
+    const rawData = fs.readFileSync(dataPath, 'utf8');
+    return rawData;
+  } catch (error) {
+    console.error("Error reading portfolio data for AI:", error);
+    return "Error loading portfolio data.";
+  }
+}
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -47,15 +40,21 @@ export default async function handler(req, res) {
   try {
     const model = genAI.getGenerativeModel({ model: "gemini-flash-latest" });
 
+    const portfolioData = getPortfolioContext();
     const chat = model.startChat({
       history: [
-        { role: "user", parts: [{ text: `You are Sarathi, Siddhartha's personal AI assistant. Use this data: ${PORTFOLIO_DATA}. 
+        { role: "user", parts: [{ text: `You are Sarathi, Siddhartha's personal AI assistant. 
+        
+Below is the LIVE portfolio data of Siddhartha Gummadi in JSON format. Use this to answer questions accurately:
+${portfolioData}
 
-Answer questions about Siddhartha's background, skills, and projects concisely. 
-Use Markdown formatting for better readability:
-- Use **bold** for emphasis (e.g., job titles, degree names).
-- Use bullet points (*) for lists.
-- Keep responses professional and helpful.` }] },
+Instructions:
+1. Answer questions about Siddhartha's background, skills, projects, and certifications concisely. 
+2. Use Markdown formatting:
+   - Use **bold** for emphasis.
+   - Use bullet points (*) for lists.
+3. If asked about a new project or certificate not in your previous knowledge, check the data above—it is the absolute truth.
+4. Keep responses professional, helpful, and welcoming.` }] },
         { role: "model", parts: [{ text: "Understood. I am Sarathi. I will help visitors learn about Siddhartha." }] },
         ...(history || []),
       ]

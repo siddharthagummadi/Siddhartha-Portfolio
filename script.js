@@ -81,6 +81,105 @@ themeBtn?.addEventListener('click', () => {
   }
 });
 
+// --- Dynamic Portfolio Rendering ---
+async function loadPortfolioData() {
+  try {
+    const response = await fetch('assets/data/portfolio.json');
+    if (!response.ok) throw new Error("Failed to load portfolio data");
+    const data = await response.json();
+
+    // Render Education (Timeline)
+    const timeline = document.querySelector('.timeline');
+    if (timeline) {
+      timeline.innerHTML = data.education.map((edu, index) => `
+        <div class="timeline-item reveal" style="transition-delay: ${index * 0.1}s">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">${edu.year}</span>
+            <h3 class="timeline-title">${edu.degree}</h3>
+            <p class="timeline-inst">${edu.institution}</p>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Render Skills
+    const skillsGrid = document.querySelector('.skills-grid');
+    if (skillsGrid) {
+      skillsGrid.innerHTML = data.skills.map((skill, index) => `
+        <div class="skill-card reveal" style="transition-delay:${index * 0.1}s">
+          <div class="skill-card-header">
+            <div class="skill-card-icon"><i class="fa-solid ${skill.icon}"></i></div>
+            <p class="skill-card-title">${skill.category}</p>
+          </div>
+          <div class="skill-list">
+            ${skill.items.map(item => `
+              <div class="skill-item">
+                <span class="skill-name">${item.name}</span>
+                <span class="skill-level">${item.level}</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Render Projects
+    const projectsGrid = document.querySelector('.projects-grid');
+    if (projectsGrid) {
+      projectsGrid.innerHTML = data.projects.map((project, index) => `
+        <article class="project-card reveal">
+          <div class="project-body">
+            <div class="project-tags">
+              ${project.tags.map(tag => `<span class="project-tag">${tag}</span>`).join('')}
+            </div>
+            <h3 class="project-name">${project.name}</h3>
+            <p class="project-desc">${project.description}</p>
+            <div class="project-links">
+              <a class="project-link gh" href="${project.github}" target="_blank" rel="noopener">
+                <i class="fa-brands fa-github"></i> GitHub
+              </a>
+              <a class="project-link live" href="${project.live}" target="_blank" rel="noopener">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i> Live
+              </a>
+            </div>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    // Render Certifications
+    const certGrid = document.querySelector('.cert-grid');
+    if (certGrid) {
+      certGrid.innerHTML = data.certifications.map(cert => `
+        <article class="project-card reveal">
+          <div class="project-body">
+            <div class="project-tags">
+              <span class="project-tag">${cert.org}</span>
+            </div>
+            <h3 class="project-name">${cert.title}</h3>
+            <div class="project-links">
+              <a class="project-link live" href="${cert.link}" target="_blank" rel="noopener">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i> View Certificate
+              </a>
+            </div>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    // Re-initialize reveals after rendering
+    const newReveals = document.querySelectorAll('.reveal');
+    newReveals.forEach(el => revealObserver.observe(el));
+
+  } catch (err) {
+    console.error("Error loading portfolio data:", err);
+  }
+}
+
+// Start loading
+loadPortfolioData();
+
 
 
 

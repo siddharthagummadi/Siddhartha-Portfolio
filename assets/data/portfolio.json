@@ -1,0 +1,91 @@
+{
+  "personal": {
+    "name": "Gummadi Siddhartha",
+    "role": "Aspiring Software Developer",
+    "about": "Computer Science student at AVN Institute of Engineering and Technology. Focused on Artificial Intelligence, Machine Learning, and Software Engineering — passionate about building intelligent systems and scalable applications.",
+    "bio": "I'm a dedicated Computer Science Engineering student with a specialization in AI & ML. I'm building a strong foundation in core programming, algorithms, and system design, with a goal of leveraging technology to solve complex problems and drive innovation.",
+    "contact": {
+      "email": "siddharthagummadi1605@gmail.com",
+      "linkedin": "https://linkedin.com/in/siddhartha-gummadi-7951042b8",
+      "github": "https://github.com/siddharthagummadi",
+      "phone": "+919493585003"
+    },
+    "quote": {
+      "sanskrit": "विद्या धनं सर्वधनप्रधानम्",
+      "translit": "Vidyā Dhanaṁ Sarva-Dhana-Pradhānam",
+      "meaning": "Knowledge is the greatest wealth."
+    }
+  },
+  "education": [
+    {
+      "year": "2023 — 2027",
+      "degree": "B.Tech in CSE (AI & ML)",
+      "institution": "AVN Institute of Engineering and Technology, Ibrahimpatnam, Hyderabad"
+    },
+    {
+      "year": "2021 — 2023",
+      "degree": "Intermediate (MPC)",
+      "institution": "Vidya Vikas Junior College, Bodhan, Nizamabad"
+    },
+    {
+      "year": "2020 — 2021",
+      "degree": "Secondary School Certificate (SSC)",
+      "institution": "Matrix High School, Varni, Nizamabad"
+    }
+  ],
+  "skills": [
+    {
+      "category": "Programming",
+      "icon": "fa-code",
+      "items": [
+        { "name": "Java", "level": "Intermediate" },
+        { "name": "Python", "level": "Intermediate" },
+        { "name": "C", "level": "Intermediate" }
+      ]
+    },
+    {
+      "category": "Frontend",
+      "icon": "fa-layer-group",
+      "items": [
+        { "name": "HTML", "level": "Intermediate" },
+        { "name": "CSS", "level": "Intermediate" },
+        { "name": "JavaScript", "level": "Basic" }
+      ]
+    },
+    {
+      "category": "Soft Skills",
+      "icon": "fa-lightbulb",
+      "items": [
+        { "name": "Problem Solving", "level": "Analytical Thinking" },
+        { "name": "Self Learning", "level": "Continuous" },
+        { "name": "Communication", "level": "Clear Articulation" }
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "SmartClass",
+      "tags": ["Python", "Flask", "OpenCV", "MySQL"],
+      "description": "A full-stack smart attendance management system featuring QR code scanning, face recognition, role-based dashboards for admin/teacher/student, and Excel & PDF report generation.",
+      "github": "https://github.com/siddharthagummadi/SmartClass.git",
+      "live": "https://smartclass-4lvr.onrender.com"
+    },
+    {
+      "name": "Dhruva",
+      "tags": ["Python", "Flask", "Gemini API", "JavaScript"],
+      "description": "A premium, wellness-grade AI guide grounded in ancient wisdom. Features a custom deep-space UI, session history, native performance metrics, and intelligent dharmic guidance powered by the Gemini API.",
+      "github": "https://github.com/siddharthagummadi/Dhruva.git",
+      "live": "https://dhruva-ucyv.onrender.com"
+    }
+  ],
+  "certifications": [
+    { "title": "Freedom with AI", "org": "Freedom with AI", "link": "certificates/Freedom with AI.pdf" },
+    { "title": "GenAI", "org": "Lyntra Data", "link": "certificates/GenAI - Lyntra Data.pdf" },
+    { "title": "AI for Beginners", "org": "HP Life", "link": "certificates/HP Life AI for Beginners.pdf" },
+    { "title": "Machine Learning with Python", "org": "IBM", "link": "certificates/IBM - Machine Learning with python.pdf" },
+    { "title": "AI Fundamentals", "org": "IBM Skillsbuild", "link": "certificates/IBM Skillsbuild - Ai fundamentals.pdf" },
+    { "title": "Getting Started with AI", "org": "IBM Skillsbuild", "link": "certificates/IBM Skillsbuild - Getting started with AI.pdf" },
+    { "title": "Journey to Cloud", "org": "IBM Skillsbuild", "link": "certificates/IBM Skillsbuild - Journey to Cloud.pdf" },
+    { "title": "PowerBI", "org": "Office Master", "link": "certificates/Office Master - PowerBI.pdf" }
+  ]
+}
