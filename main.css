@@ -671,7 +671,8 @@ a {
   padding: 100px var(--pad-x);
 }
 
-.projects-grid {
+.projects-grid,
+.cert-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 400px));
   justify-content: center;
@@ -679,6 +680,14 @@ a {
   max-width: 1100px;
   margin: 0 auto;
 }
+
+@media (min-width: 1200px) {
+  .cert-grid {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 1200px;
+  }
+}
+
 
 .project-card {
   background: var(--clr-card);
