@@ -728,9 +728,24 @@ a {
 @media (min-width: 1200px) {
   .cert-grid {
     grid-template-columns: repeat(3, 1fr);
-    max-width: 1200px;
+    max-width: 1000px; /* Reduced from 1200px */
   }
 }
+
+/* Compact layout for Certification Cards */
+.cert-grid .project-img-placeholder {
+  height: 120px; /* Reduced from 160px */
+}
+
+.cert-grid .project-body {
+  padding: 20px 18px; /* Reduced from 28px 24px */
+  gap: 8px;
+}
+
+.cert-grid .project-name {
+  font-size: 16px; /* Slightly smaller for compactness */
+}
+
 
 
 .project-card {
