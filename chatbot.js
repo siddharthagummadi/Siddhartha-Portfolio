@@ -222,4 +222,38 @@ document.addEventListener("DOMContentLoaded", () => {
     chatInput.addEventListener("keypress", (e) => {
         if (e.key === "Enter") sendMessage(chatInput.value);
     });
+
+    // --- Footer Avoidance Logic ---
+    const footer = document.getElementById("footer");
+    const adjustPosition = () => {
+        const footerRect = footer.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
+        
+        // Check if footer is visible in the viewport
+        if (footerRect.top < viewportHeight) {
+            const overlapHeight = viewportHeight - footerRect.top;
+            const newBottom = 30 + overlapHeight; // 30 is original bottom
+            launcher.style.bottom = `${newBottom}px`;
+            chatbotWindow.style.bottom = `${newBottom + 80}px`; // 110 - 30 = 80px difference
+        } else {
+            launcher.style.bottom = "30px";
+            chatbotWindow.style.bottom = "110px";
+        }
+    };
+
+    // Use Intersection Observer for performance, fallback to scroll if needed
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                window.addEventListener("scroll", adjustPosition, { passive: true });
+                adjustPosition();
+            } else {
+                window.removeEventListener("scroll", adjustPosition);
+                launcher.style.bottom = "30px";
+                chatbotWindow.style.bottom = "110px";
+            }
+        });
+    }, { threshold: 0 });
+
+    if (footer) observer.observe(footer);
 });
