@@ -523,27 +523,10 @@ a {
   transform: translateX(10px) translateY(-2px);
 }
 
-/* Multi-color Timeline Accents */
-.timeline-content::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: var(--accent-1);
-  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-  z-index: 10;
+/* Multi-color Timeline Accents - REMOVED PER USER REQUEST */
+.timeline-content {
+  /* Ensure overflow is visible if needed, usually cards cover it */
 }
-
-.timeline-item:nth-child(8n+1) .timeline-content::before { background: var(--accent-1); }
-.timeline-item:nth-child(8n+2) .timeline-content::before { background: var(--accent-2); }
-.timeline-item:nth-child(8n+3) .timeline-content::before { background: var(--accent-3); }
-.timeline-item:nth-child(8n+4) .timeline-content::before { background: var(--accent-4); }
-.timeline-item:nth-child(8n+5) .timeline-content::before { background: var(--accent-5); }
-.timeline-item:nth-child(8n+6) .timeline-content::before { background: var(--accent-6); }
-.timeline-item:nth-child(8n+7) .timeline-content::before { background: var(--accent-7); }
-.timeline-item:nth-child(8n+8) .timeline-content::before { background: var(--accent-8); }
 
 .timeline-item:nth-child(8n+1):hover .timeline-content { border-color: var(--accent-1); box-shadow: 0 0 40px rgba(6, 182, 212, 0.2); }
 .timeline-item:nth-child(8n+2):hover .timeline-content { border-color: var(--accent-2); box-shadow: 0 0 40px rgba(139, 92, 246, 0.2); }
@@ -761,15 +744,14 @@ a {
   position: relative;
 }
 
-#projects .project-card::before,
-#certifications .project-card::before {
+.project-card::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 3px;
-  background: linear-gradient(90deg, var(--clr-accent), var(--clr-primary));
+  background: var(--clr-primary); /* Fallback */
   z-index: 10;
 }
 
