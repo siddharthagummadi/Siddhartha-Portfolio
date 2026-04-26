@@ -689,7 +689,8 @@ a {
   position: relative;
 }
 
-#projects .project-card::before {
+#projects .project-card::before,
+#certifications .project-card::before {
   content: '';
   position: absolute;
   top: 0;
@@ -700,7 +701,8 @@ a {
   z-index: 10;
 }
 
-#projects .project-card:hover {
+#projects .project-card:hover,
+#certifications .project-card:hover {
   border-color: var(--clr-accent);
   box-shadow: 0 0 40px rgba(16, 185, 129, 0.25);
   transform: translateY(-8px);
@@ -805,10 +807,6 @@ a {
 
 .project-link::after {
   display: none;
-}
-
-.sec-cert {
-  padding: 100px var(--pad-x);
 }
 
 .sec6 {
