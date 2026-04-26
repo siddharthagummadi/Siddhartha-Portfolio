@@ -38,27 +38,27 @@
       "category": "Programming",
       "icon": "fa-code",
       "items": [
-        { "name": "Java", "level": "Intermediate" },
-        { "name": "Python", "level": "Intermediate" },
-        { "name": "C", "level": "Intermediate" }
+        { "name": "Java", "level": "Intermediate", "icon": "fa-brands fa-java" },
+        { "name": "Python", "level": "Intermediate", "icon": "fa-brands fa-python" },
+        { "name": "C", "level": "Intermediate", "icon": "fa-solid fa-code" }
       ]
     },
     {
       "category": "Frontend",
       "icon": "fa-layer-group",
       "items": [
-        { "name": "HTML", "level": "Intermediate" },
-        { "name": "CSS", "level": "Intermediate" },
-        { "name": "JavaScript", "level": "Basic" }
+        { "name": "HTML", "level": "Intermediate", "icon": "fa-brands fa-html5" },
+        { "name": "CSS", "level": "Intermediate", "icon": "fa-brands fa-css3-alt" },
+        { "name": "JavaScript", "level": "Basic", "icon": "fa-brands fa-js" }
       ]
     },
     {
       "category": "Soft Skills",
       "icon": "fa-lightbulb",
       "items": [
-        { "name": "Problem Solving", "level": "Analytical Thinking" },
-        { "name": "Self Learning", "level": "Continuous" },
-        { "name": "Communication", "level": "Clear Articulation" }
+        { "name": "Problem Solving", "level": "Analytical Thinking", "icon": "fa-solid fa-brain" },
+        { "name": "Self Learning", "level": "Continuous", "icon": "fa-solid fa-book-reader" },
+        { "name": "Communication", "level": "Clear Articulation", "icon": "fa-solid fa-comments" }
       ]
     }
   ],

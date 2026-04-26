@@ -115,7 +115,10 @@ async function loadPortfolioData() {
           <div class="skill-list">
             ${skill.items.map(item => `
               <div class="skill-item">
-                <span class="skill-name">${item.name}</span>
+                <div class="skill-item-info">
+                  <i class="${item.icon} skill-item-icon"></i>
+                  <span class="skill-name">${item.name}</span>
+                </div>
                 <span class="skill-level">${item.level}</span>
               </div>
             `).join('')}
