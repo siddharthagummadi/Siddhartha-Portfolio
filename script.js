@@ -183,6 +183,38 @@ async function loadPortfolioData() {
 // Start loading
 loadPortfolioData();
 
+// --- Splash Screen Logic ---
+window.addEventListener('DOMContentLoaded', () => {
+  const splash = document.getElementById('splash-screen');
+  if (splash) {
+    // Minimum time to show splash (3s for a snappier experience)
+    const minDisplayTime = 3000;
+    const startTime = Date.now();
+
+    const hideSplash = () => {
+      const currentTime = Date.now();
+      const elapsedTime = currentTime - startTime;
+      const remainingTime = Math.max(0, minDisplayTime - elapsedTime);
+
+      setTimeout(() => {
+        splash.classList.add('fade-out');
+        // Remove from DOM after fade animation (0.8s in CSS)
+        setTimeout(() => {
+          splash.remove();
+        }, 800);
+      }, remainingTime);
+    };
+
+    // If page is fully loaded before minDisplayTime, hide after minDisplayTime
+    // If it takes longer, hide as soon as it's loaded
+    if (document.readyState === 'complete') {
+      hideSplash();
+    } else {
+      window.addEventListener('load', hideSplash);
+    }
+  }
+});
+
 
 
 

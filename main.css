@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700;800&family=Medula+One&display=swap');
 
 :root {
   --clr-primary: #06b6d4;
@@ -524,9 +524,6 @@ a {
 }
 
 /* Multi-color Timeline Accents - REMOVED PER USER REQUEST */
-.timeline-content {
-  /* Ensure overflow is visible if needed, usually cards cover it */
-}
 
 .timeline-item:nth-child(8n+1):hover .timeline-content { border-color: var(--accent-1); box-shadow: 0 0 40px rgba(6, 182, 212, 0.2); }
 .timeline-item:nth-child(8n+2):hover .timeline-content { border-color: var(--accent-2); box-shadow: 0 0 40px rgba(139, 92, 246, 0.2); }
@@ -1341,4 +1338,240 @@ a {
     animation-duration: .01ms !important;
     transition-duration: .01ms !important;
   }
+}
+
+/* Splash Screen Styles */
+@import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&display=swap');
+
+#splash-screen {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100vh;
+  background: #020617; /* Deepest Cosmic Base */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10001; 
+  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), visibility 1.2s;
+  overflow: hidden;
+}
+
+#splash-screen.fade-out {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Redefined Nebula Flow */
+.splash-bg-blobs {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+  background: radial-gradient(circle at center, #020617 0%, #000 100%);
+}
+
+.splash-bg-blobs .blob {
+  position: absolute;
+  width: 60vw;
+  height: 60vw;
+  filter: blur(140px);
+  opacity: 0.2;
+  border-radius: 50%;
+  animation: blobFloat 20s infinite alternate ease-in-out;
+}
+
+.splash-bg-blobs .blob:nth-child(1) {
+  top: -10%;
+  left: -10%;
+  background: radial-gradient(circle, #2e1065 0%, transparent 70%); /* Deep Violet */
+}
+
+.splash-bg-blobs .blob:nth-child(2) {
+  bottom: -10%;
+  right: -10%;
+  background: radial-gradient(circle, #064e3b 0%, transparent 70%); /* Deep Emerald */
+  animation-delay: -10s;
+}
+
+@keyframes blobFloat {
+  0% { transform: translate(-5%, -5%) scale(1); }
+  100% { transform: translate(10%, 10%) scale(1.2); }
+}
+
+/* The Starfield */
+.starfield {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.star {
+  position: absolute;
+  width: var(--size);
+  height: var(--size);
+  background: #fff;
+  border-radius: 50%;
+  opacity: 0.3;
+  animation: twinkle 3s infinite ease-in-out;
+  animation-delay: var(--delay);
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* The Orbital Loom */
+.orbital-loom {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0.3;
+  transform: scale(1.5);
+  pointer-events: none;
+}
+
+.orbital-loom svg {
+  width: 100%;
+  height: 100%;
+}
+
+.orbit {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.04);
+  stroke-width: 0.1;
+}
+
+.planet {
+  fill: var(--clr-primary);
+  filter: drop-shadow(0 0 5px var(--clr-primary));
+}
+
+.planet-1 { animation: orbitRotate 15s linear infinite; transform-origin: center; }
+.planet-2 { animation: orbitRotate 25s linear infinite reverse; transform-origin: center; fill: var(--clr-secondary); }
+
+@keyframes orbitRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.splash-content {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 5;
+  width: 100%;
+}
+
+.splash-text {
+  font-family: 'Syncopate', sans-serif;
+  font-size: clamp(18px, 4vw, 36px);
+  font-weight: 400; /* Regular light feel */
+  color: var(--clr-white);
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 1px solid var(--clr-primary);
+  width: 0;
+  margin: 0 auto;
+  letter-spacing: 0.8em; /* Ultra wide tracking */
+  text-transform: uppercase;
+  animation: 
+    typing-cosmic 2s steps(40, end) forwards,
+    blink-caret .75s step-end infinite;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+@keyframes typing-cosmic {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: var(--clr-primary); }
+}
+
+.splash-loader {
+  width: 240px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.03);
+  margin: 50px auto 0;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  animation: fadeIn 1s ease forwards 1.5s;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+.splash-loader::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, transparent, var(--clr-primary), transparent);
+  transform: translateX(-100%);
+  animation: loader-cosmic 3s infinite ease-in-out;
+}
+
+@keyframes loader-cosmic {
+  to { transform: translateX(100%); }
+}
+
+/* Mobile Responsiveness for Splash Screen */
+@media (max-width: 768px) {
+  .splash-text {
+    letter-spacing: 0.25em; /* Significantly tighter to fit on phones */
+    font-size: 16px; /* Explicit size for clarity on small screens */
+    border-right-width: 1px;
+    animation: 
+      typing-cosmic-mobile 2s steps(20, end) forwards,
+      blink-caret .75s step-end infinite;
+  }
+
+  @keyframes typing-cosmic-mobile {
+    from { width: 0 }
+    to { width: 90% } /* Allow some breathing room */
+  }
+
+  .orbital-loom {
+    transform: scale(1); /* Shrink orbits for narrow viewports */
+    opacity: 0.2;
+  }
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+.splash-loader::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, var(--clr-primary), var(--clr-secondary), var(--clr-accent));
+  transform: translateX(-100%);
+  animation: loaderProgress 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes loaderProgress {
+  0% { transform: translateX(-100%); }
+  50% { transform: translateX(0); }
+  100% { transform: translateX(100%); }
 }
