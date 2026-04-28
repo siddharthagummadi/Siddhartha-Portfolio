@@ -127,53 +127,29 @@ async function loadPortfolioData() {
       `).join('');
     }
 
-    // Store projects for filtering
-    const allProjects = data.projects;
-    
-    function renderProjects(filter = 'all') {
-      const filtered = filter === 'all' 
-        ? allProjects 
-        : allProjects.filter(p => p.category === filter);
-
-      if (projectsGrid) {
-        projectsGrid.innerHTML = filtered.map((project, index) => `
-          <article class="project-card reveal" data-category="${project.category}">
-            <div class="project-body">
-              <div class="project-tags">
-                ${project.tags.map(tag => `<span class="project-tag">${tag}</span>`).join('')}
-              </div>
-              <h3 class="project-name">${project.name}</h3>
-              <p class="project-desc">${project.description}</p>
-              <div class="project-links">
-                <a class="project-link gh" href="${project.github}" target="_blank" rel="noopener">
-                  <i class="fa-brands fa-github"></i> GitHub
-                </a>
-                <a class="project-link live" href="${project.live}" target="_blank" rel="noopener">
-                  <i class="fa-solid fa-arrow-up-right-from-square"></i> Live
-                </a>
-              </div>
+    // Render Projects
+    const projectsGrid = document.querySelector('.projects-grid');
+    if (projectsGrid) {
+      projectsGrid.innerHTML = data.projects.map((project, index) => `
+        <article class="project-card reveal">
+          <div class="project-body">
+            <div class="project-tags">
+              ${project.tags.map(tag => `<span class="project-tag">${tag}</span>`).join('')}
             </div>
-          </article>
-        `).join('');
-        
-        // Re-observe new elements
-        const newReveals = projectsGrid.querySelectorAll('.reveal');
-        newReveals.forEach(el => revealObserver.observe(el));
-      }
+            <h3 class="project-name">${project.name}</h3>
+            <p class="project-desc">${project.description}</p>
+            <div class="project-links">
+              <a class="project-link gh" href="${project.github}" target="_blank" rel="noopener">
+                <i class="fa-brands fa-github"></i> GitHub
+              </a>
+              <a class="project-link live" href="${project.live}" target="_blank" rel="noopener">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i> Live
+              </a>
+            </div>
+          </div>
+        </article>
+      `).join('');
     }
-
-    // Initial render
-    renderProjects();
-
-    // Filter Button Listeners
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        filterBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        renderProjects(btn.dataset.filter);
-      });
-    });
 
     // Render Certifications
     const certGrid = document.querySelector('.cert-grid');
