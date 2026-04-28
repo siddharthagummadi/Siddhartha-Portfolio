@@ -66,6 +66,7 @@
   "projects": [
     {
       "name": "SmartClass",
+      "category": "AI/ML",
       "tags": ["Python", "Flask", "OpenCV", "MySQL"],
       "description": "A full-stack smart attendance management system featuring QR code scanning, face recognition, role-based dashboards for admin/teacher/student, and Excel & PDF report generation.",
       "github": "https://github.com/siddharthagummadi/SmartClass.git",
@@ -73,6 +74,7 @@
     },
     {
       "name": "Dhruva",
+      "category": "AI/ML",
       "tags": ["Python", "Flask", "Gemini API", "JavaScript"],
       "description": "A premium, wellness-grade AI guide grounded in ancient wisdom. Features a custom deep-space UI, session history, native performance metrics, and intelligent dharmic guidance powered by the Gemini API.",
       "github": "https://github.com/siddharthagummadi/Dhruva.git",

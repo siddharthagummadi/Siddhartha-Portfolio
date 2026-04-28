@@ -127,29 +127,53 @@ async function loadPortfolioData() {
       `).join('');
     }
 
-    // Render Projects
-    const projectsGrid = document.querySelector('.projects-grid');
-    if (projectsGrid) {
-      projectsGrid.innerHTML = data.projects.map((project, index) => `
-        <article class="project-card reveal">
-          <div class="project-body">
-            <div class="project-tags">
-              ${project.tags.map(tag => `<span class="project-tag">${tag}</span>`).join('')}
+    // Store projects for filtering
+    const allProjects = data.projects;
+    
+    function renderProjects(filter = 'all') {
+      const filtered = filter === 'all' 
+        ? allProjects 
+        : allProjects.filter(p => p.category === filter);
+
+      if (projectsGrid) {
+        projectsGrid.innerHTML = filtered.map((project, index) => `
+          <article class="project-card reveal" data-category="${project.category}">
+            <div class="project-body">
+              <div class="project-tags">
+                ${project.tags.map(tag => `<span class="project-tag">${tag}</span>`).join('')}
+              </div>
+              <h3 class="project-name">${project.name}</h3>
+              <p class="project-desc">${project.description}</p>
+              <div class="project-links">
+                <a class="project-link gh" href="${project.github}" target="_blank" rel="noopener">
+                  <i class="fa-brands fa-github"></i> GitHub
+                </a>
+                <a class="project-link live" href="${project.live}" target="_blank" rel="noopener">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i> Live
+                </a>
+              </div>
             </div>
-            <h3 class="project-name">${project.name}</h3>
-            <p class="project-desc">${project.description}</p>
-            <div class="project-links">
-              <a class="project-link gh" href="${project.github}" target="_blank" rel="noopener">
-                <i class="fa-brands fa-github"></i> GitHub
-              </a>
-              <a class="project-link live" href="${project.live}" target="_blank" rel="noopener">
-                <i class="fa-solid fa-arrow-up-right-from-square"></i> Live
-              </a>
-            </div>
-          </div>
-        </article>
-      `).join('');
+          </article>
+        `).join('');
+        
+        // Re-observe new elements
+        const newReveals = projectsGrid.querySelectorAll('.reveal');
+        newReveals.forEach(el => revealObserver.observe(el));
+      }
     }
+
+    // Initial render
+    renderProjects();
+
+    // Filter Button Listeners
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderProjects(btn.dataset.filter);
+      });
+    });
 
     // Render Certifications
     const certGrid = document.querySelector('.cert-grid');
@@ -213,6 +237,92 @@ window.addEventListener('DOMContentLoaded', () => {
       window.addEventListener('load', hideSplash);
     }
   }
+});
+
+// --- Card Glow Effect Logic ---
+document.addEventListener('mousemove', (e) => {
+  const cards = document.querySelectorAll('.skill-card, .project-card');
+  cards.forEach(card => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    card.style.setProperty('--glow-x', `${x}px`);
+    card.style.setProperty('--glow-y', `${y}px`);
+  });
+});
+
+// --- GitHub Heatmap Generation ---
+function generateHeatmap() {
+  const heatmap = document.getElementById('github-heatmap');
+  if (!heatmap) return;
+
+  const cols = 52; // Weeks in a year
+  const rows = 7;  // Days in a week
+  
+  // Mock contribution levels for Siddhartha
+  // We'll generate a pattern that looks organic
+  for (let i = 0; i < cols; i++) {
+    const column = document.createElement('div');
+    column.className = 'heatmap-column';
+    
+    for (let j = 0; j < rows; j++) {
+      const cell = document.createElement('div');
+      cell.className = 'heatmap-cell';
+      
+      // Randomish levels with a bias towards 1-3
+      const rand = Math.random();
+      let level = 0;
+      if (rand > 0.8) level = 4;
+      else if (rand > 0.6) level = 3;
+      else if (rand > 0.4) level = 2;
+      else if (rand > 0.15) level = 1;
+      
+      cell.classList.add(`level-${level}`);
+      column.appendChild(cell);
+    }
+    heatmap.appendChild(column);
+  }
+}
+
+// --- Custom Cursor Logic ---
+function initCustomCursor() {
+  const dot = document.querySelector('.cursor-dot');
+  const outline = document.querySelector('.cursor-outline');
+  
+  if (!dot || !outline) return;
+
+  window.addEventListener('mousemove', (e) => {
+    const posX = e.clientX;
+    const posY = e.clientY;
+
+    // Direct movement for dot
+    dot.style.left = `${posX}px`;
+    dot.style.top = `${posY}px`;
+    dot.style.opacity = '1';
+
+    // Delayed movement for outline (handled by CSS transition for smoothness)
+    outline.style.left = `${posX}px`;
+    outline.style.top = `${posY}px`;
+    outline.style.opacity = '1';
+  });
+
+  // Handle hover states
+  const interactiveElements = document.querySelectorAll('a, button, .skill-card, .project-card, .contact-chip, #hamburger');
+  
+  interactiveElements.forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      document.body.classList.add('cursor-hover');
+    });
+    el.addEventListener('mouseleave', () => {
+      document.body.classList.remove('cursor-hover');
+    });
+  });
+}
+
+// Call initializations
+document.addEventListener('DOMContentLoaded', () => {
+  generateHeatmap();
+  initCustomCursor();
 });
 
 
