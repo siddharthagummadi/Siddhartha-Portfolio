@@ -4,7 +4,6 @@
     "role": "Aspiring Software Developer",
     "about": "Computer Science student at AVN Institute of Engineering and Technology. Focused on Artificial Intelligence, Machine Learning, and Software Engineering — passionate about building intelligent systems and scalable applications.",
     "bio": "I'm a dedicated Computer Science Engineering student with a specialization in AI & ML. I'm building a strong foundation in core programming, algorithms, and system design, with a goal of leveraging technology to solve complex problems and drive innovation.",
-    "summary": "Siddhartha is a proactive CSE student (2023-2027) with a deep interest in AI/ML and full-stack development. He has built several notable projects including SmartClass (an attendance system) and Dhruva (a wellness AI guide). He holds multiple certifications from IBM, HP, and other prestigious organizations.",
     "contact": {
       "email": "siddharthagummadi1605@gmail.com",
       "linkedin": "https://linkedin.com/in/siddhartha-gummadi-7951042b8",
@@ -28,6 +27,7 @@
       "degree": "Intermediate (MPC)",
       "institution": "Vidya Vikas Junior College, Bodhan, Nizamabad"
     },
+    
     {
       "year": "2020 — 2021",
       "degree": "Secondary School Certificate (SSC)",
@@ -66,7 +66,6 @@
   "projects": [
     {
       "name": "SmartClass",
-      "category": "AI/ML",
       "tags": ["Python", "Flask", "OpenCV", "MySQL"],
       "description": "A full-stack smart attendance management system featuring QR code scanning, face recognition, role-based dashboards for admin/teacher/student, and Excel & PDF report generation.",
       "github": "https://github.com/siddharthagummadi/SmartClass.git",
@@ -74,7 +73,6 @@
     },
     {
       "name": "Dhruva",
-      "category": "AI/ML",
       "tags": ["Python", "Flask", "Gemini API", "JavaScript"],
       "description": "A premium, wellness-grade AI guide grounded in ancient wisdom. Features a custom deep-space UI, session history, native performance metrics, and intelligent dharmic guidance powered by the Gemini API.",
       "github": "https://github.com/siddharthagummadi/Dhruva.git",
@@ -82,53 +80,13 @@
     }
   ],
   "certifications": [
-    { 
-      "title": "Freedom with AI", 
-      "org": "Freedom with AI", 
-      "link": "certificates/Freedom with AI.pdf",
-      "description": "Advanced AI implementation and productivity strategies."
-    },
-    { 
-      "title": "GenAI", 
-      "org": "Lyntra Data", 
-      "link": "certificates/GenAI - Lyntra Data.pdf",
-      "description": "Exploration of Generative AI models and data applications."
-    },
-    { 
-      "title": "AI for Beginners", 
-      "org": "HP Life", 
-      "link": "certificates/HP Life AI for Beginners.pdf",
-      "description": "Foundational concepts of Artificial Intelligence and its real-world impact."
-    },
-    { 
-      "title": "Machine Learning with Python", 
-      "org": "IBM", 
-      "link": "certificates/IBM - Machine Learning with python.pdf",
-      "description": "Comprehensive course on ML algorithms using Scikit-learn and Python."
-    },
-    { 
-      "title": "AI Fundamentals", 
-      "org": "IBM Skillsbuild", 
-      "link": "certificates/IBM Skillsbuild - Ai fundamentals.pdf",
-      "description": "Core principles of AI, including ethics and neural networks."
-    },
-    { 
-      "title": "Getting Started with AI", 
-      "org": "IBM Skillsbuild", 
-      "link": "certificates/IBM Skillsbuild - Getting started with AI.pdf",
-      "description": "Introductory module on the evolution and current state of AI."
-    },
-    { 
-      "title": "Journey to Cloud", 
-      "org": "IBM Skillsbuild", 
-      "link": "certificates/IBM Skillsbuild - Journey to Cloud.pdf",
-      "description": "Basics of cloud computing, service models, and IBM Cloud ecosystem."
-    },
-    { 
-      "title": "PowerBI", 
-      "org": "Office Master", 
-      "link": "certificates/Office Master - PowerBI.pdf",
-      "description": "Data visualization and business intelligence using Microsoft PowerBI."
-    }
+    { "title": "Freedom with AI", "org": "Freedom with AI", "link": "certificates/Freedom with AI.pdf" },
+    { "title": "GenAI", "org": "Lyntra Data", "link": "certificates/GenAI - Lyntra Data.pdf" },
+    { "title": "AI for Beginners", "org": "HP Life", "link": "certificates/HP Life AI for Beginners.pdf" },
+    { "title": "Machine Learning with Python", "org": "IBM", "link": "certificates/IBM - Machine Learning with python.pdf" },
+    { "title": "AI Fundamentals", "org": "IBM Skillsbuild", "link": "certificates/IBM Skillsbuild - Ai fundamentals.pdf" },
+    { "title": "Getting Started with AI", "org": "IBM Skillsbuild", "link": "certificates/IBM Skillsbuild - Getting started with AI.pdf" },
+    { "title": "Journey to Cloud", "org": "IBM Skillsbuild", "link": "certificates/IBM Skillsbuild - Journey to Cloud.pdf" },
+    { "title": "PowerBI", "org": "Office Master", "link": "certificates/Office Master - PowerBI.pdf" }
   ]
 }
