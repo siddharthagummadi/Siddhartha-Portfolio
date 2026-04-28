@@ -227,8 +227,8 @@ loadPortfolioData();
 window.addEventListener('DOMContentLoaded', () => {
   const splash = document.getElementById('splash-screen');
   if (splash) {
-    // Minimum time to show splash (3s for a snappier experience)
-    const minDisplayTime = 3000;
+    // Minimum time to show splash (1s for a snappier experience)
+    const minDisplayTime = 1000;
     const startTime = Date.now();
 
     const hideSplash = () => {

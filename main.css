@@ -1424,7 +1424,7 @@ a {
   align-items: center;
   justify-content: center;
   z-index: 10001; 
-  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), visibility 1.2s;
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.8s;
   overflow: hidden;
 }
 
