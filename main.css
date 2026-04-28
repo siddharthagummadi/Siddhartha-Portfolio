@@ -829,6 +829,11 @@ a {
   font-size: 16px; /* Slightly smaller for compactness */
 }
 
+.cert-grid .project-link {
+  padding: 6px 12px;
+  font-size: 12px;
+}
+
 
 
 .project-card {
