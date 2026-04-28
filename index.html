@@ -32,8 +32,6 @@
 
   <link rel="stylesheet" href="main.css" />
   <link rel="stylesheet" href="chatbot.css" />
-  <link rel="manifest" href="manifest.json" />
-  <meta name="theme-color" content="#020617" />
 </head>
 
 <body>
@@ -371,25 +369,8 @@
     </div>
   </div>
 
-  <!-- Custom Cursor -->
-  <div class="cursor-dot"></div>
-  <div class="cursor-outline"></div>
-
   <script src="script.js"></script>
   <script src="chatbot.js"></script>
-  
-  <!-- Register Service Worker -->
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js').then(registration => {
-          console.log('SW registered: ', registration);
-        }).catch(registrationError => {
-          console.log('SW registration failed: ', registrationError);
-        });
-      });
-    }
-  </script>
 </body>
 
 </html>
