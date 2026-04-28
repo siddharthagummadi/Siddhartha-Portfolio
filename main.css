@@ -1413,15 +1413,13 @@ a {
   }
 }
 
-/* Splash Screen Styles */
-@import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&display=swap');
-
+/* Enhanced Night Mode Splash Screen (Pure CSS Landscape) */
 #splash-screen {
   position: fixed;
   inset: 0;
   width: 100%;
   height: 100vh;
-  background: #020617; /* Deepest Cosmic Base */
+  background: #00020a; 
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1436,52 +1434,74 @@ a {
   pointer-events: none;
 }
 
-/* Redefined Nebula Flow */
+/* Sky & Horizon */
 .splash-bg-blobs {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  overflow: hidden;
   z-index: 0;
-  background: radial-gradient(circle at center, #020617 0%, #000 100%);
+  background: linear-gradient(to bottom, #00020a 0%, #050a1f 70%, #0c153a 100%);
 }
 
+/* Glowing Horizon Line */
+.splash-bg-blobs::after {
+  content: '';
+  position: absolute;
+  bottom: 30%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.3), transparent);
+  filter: blur(4px);
+  z-index: 2;
+}
+
+/* Mountain Silhouettes (Pure CSS) */
 .splash-bg-blobs .blob {
   position: absolute;
-  width: 60vw;
-  height: 60vw;
-  filter: blur(140px);
-  opacity: 0.2;
-  border-radius: 50%;
-  animation: blobFloat 20s infinite alternate ease-in-out;
+  bottom: 30%;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  background: #00020a;
+  clip-path: polygon(0% 100%, 15% 40%, 30% 70%, 45% 20%, 60% 60%, 75% 10%, 90% 50%, 100% 100%);
+  opacity: 0.8;
+  z-index: 1;
 }
 
-.splash-bg-blobs .blob:nth-child(1) {
-  top: -10%;
-  left: -10%;
-  background: radial-gradient(circle, #2e1065 0%, transparent 70%); /* Deep Violet */
-}
-
+/* Mirror/Lake Reflection */
 .splash-bg-blobs .blob:nth-child(2) {
-  bottom: -10%;
-  right: -10%;
-  background: radial-gradient(circle, #064e3b 0%, transparent 70%); /* Deep Emerald */
-  animation-delay: -10s;
+  bottom: 0;
+  height: 30%;
+  background: linear-gradient(to bottom, rgba(12, 21, 58, 0.5), #00020a);
+  clip-path: none;
+  opacity: 1;
+  z-index: 1;
 }
 
-@keyframes blobFloat {
-  0% { transform: translate(-5%, -5%) scale(1); }
-  100% { transform: translate(10%, 10%) scale(1.2); }
+/* Soft Nebula Mists */
+.splash-bg-blobs::before {
+  content: '';
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  width: 60%;
+  height: 40%;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, transparent 70%);
+  filter: blur(60px);
+  animation: nebulaFloat 15s infinite alternate ease-in-out;
 }
 
-/* The Starfield */
+@keyframes nebulaFloat {
+  from { transform: translate(-5%, -5%) scale(1); }
+  to { transform: translate(5%, 5%) scale(1.1); }
+}
+
 .starfield {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
+  z-index: 0;
 }
 
 .star {
@@ -1497,39 +1517,23 @@ a {
 
 @keyframes twinkle {
   0%, 100% { opacity: 0.3; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.2); }
+  50% { opacity: 0.8; transform: scale(1.2); }
 }
 
-/* The Orbital Loom */
 .orbital-loom {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
   z-index: 1;
-  opacity: 0.3;
-  transform: scale(1.5);
+  opacity: 0.15;
+  transform: scale(1.2);
   pointer-events: none;
 }
 
-.orbital-loom svg {
-  width: 100%;
-  height: 100%;
-}
-
-.orbit {
-  fill: none;
-  stroke: rgba(255, 255, 255, 0.04);
-  stroke-width: 0.1;
-}
-
-.planet {
-  fill: var(--clr-primary);
-  filter: drop-shadow(0 0 5px var(--clr-primary));
-}
-
-.planet-1 { animation: orbitRotate 15s linear infinite; transform-origin: center; }
-.planet-2 { animation: orbitRotate 25s linear infinite reverse; transform-origin: center; fill: var(--clr-secondary); }
+.orbital-loom svg { width: 100%; height: 100%; }
+.orbit { fill: none; stroke: rgba(255, 255, 255, 0.05); stroke-width: 0.05; }
+.planet { fill: var(--clr-primary); filter: drop-shadow(0 0 5px var(--clr-primary)); }
+.planet-1 { animation: orbitRotate 20s linear infinite; transform-origin: center; }
+.planet-2 { animation: orbitRotate 35s linear infinite reverse; transform-origin: center; fill: var(--clr-secondary); }
 
 @keyframes orbitRotate {
   from { transform: rotate(0deg); }
@@ -1542,51 +1546,33 @@ a {
   flex-direction: column;
   align-items: center;
   position: relative;
-  z-index: 5;
-  width: 100%;
+  z-index: 10;
 }
 
 .splash-text {
   font-family: 'Syncopate', sans-serif;
-  font-size: clamp(18px, 4vw, 36px);
-  font-weight: 400; /* Regular light feel */
+  font-size: clamp(16px, 4vw, 32px);
+  font-weight: 700;
   color: var(--clr-white);
-  white-space: nowrap;
-  overflow: hidden;
-  border-right: 1px solid var(--clr-primary);
-  width: 0;
-  margin: 0 auto;
-  letter-spacing: 0.8em; /* Ultra wide tracking */
+  letter-spacing: 1em;
   text-transform: uppercase;
-  animation: 
-    typing-cosmic 2s steps(40, end) forwards,
-    blink-caret .75s step-end infinite;
-  text-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+  margin-bottom: 20px;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+  animation: fadeInText 2s ease forwards;
 }
 
-@keyframes typing-cosmic {
-  from { width: 0 }
-  to { width: 100% }
-}
-
-@keyframes blink-caret {
-  from, to { border-color: transparent }
-  50% { border-color: var(--clr-primary); }
+@keyframes fadeInText {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .splash-loader {
-  width: 240px;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.03);
-  margin: 50px auto 0;
+  width: 200px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
   position: relative;
   overflow: hidden;
-  opacity: 0;
-  animation: fadeIn 1s ease forwards 1.5s;
-}
-
-@keyframes fadeIn {
-  to { opacity: 1; }
 }
 
 .splash-loader::after {
@@ -1598,53 +1584,15 @@ a {
   width: 100%;
   background: linear-gradient(90deg, transparent, var(--clr-primary), transparent);
   transform: translateX(-100%);
-  animation: loader-cosmic 3s infinite ease-in-out;
-}
-
-@keyframes loader-cosmic {
-  to { transform: translateX(100%); }
-}
-
-/* Mobile Responsiveness for Splash Screen */
-@media (max-width: 768px) {
-  .splash-text {
-    letter-spacing: 0.25em; /* Significantly tighter to fit on phones */
-    font-size: 16px; /* Explicit size for clarity on small screens */
-    border-right-width: 1px;
-    animation: 
-      typing-cosmic-mobile 2s steps(20, end) forwards,
-      blink-caret .75s step-end infinite;
-  }
-
-  @keyframes typing-cosmic-mobile {
-    from { width: 0 }
-    to { width: 90% } /* Allow some breathing room */
-  }
-
-  .orbital-loom {
-    transform: scale(1); /* Shrink orbits for narrow viewports */
-    opacity: 0.2;
-  }
-}
-
-@keyframes fadeIn {
-  to { opacity: 1; }
-}
-
-.splash-loader::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background: linear-gradient(90deg, var(--clr-primary), var(--clr-secondary), var(--clr-accent));
-  transform: translateX(-100%);
-  animation: loaderProgress 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  animation: loaderProgress 2s infinite ease-in-out;
 }
 
 @keyframes loaderProgress {
   0% { transform: translateX(-100%); }
-  50% { transform: translateX(0); }
   100% { transform: translateX(100%); }
+}
+
+@media (max-width: 768px) {
+  .splash-text { letter-spacing: 0.3em; font-size: 14px; }
+  .orbital-loom { transform: scale(0.8); }
 }
