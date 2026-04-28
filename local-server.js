@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import cors from 'cors';
+import fs from 'fs';
 
 dotenv.config();
 
@@ -19,25 +20,17 @@ app.use(express.static(__dirname));
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
 
-const PORTFOLIO_DATA = `
-Information about Siddhartha Gummadi:
-- Role: Aspiring Software Developer (CSE AI & ML Student).
-- Education: 
-    - B.Tech in CSE (AI & ML) at AVN Institute of Engineering and Technology (2023-2027).
-    - Intermediate (MPC) at Vidya Vikas Junior College (2021-2023).
-    - SSC at Matrix High School (2020-2021).
-- Skills:
-    - Programming: Java, Python, C (Intermediate).
-    - Frontend: HTML, CSS (Intermediate), JavaScript (Basic).
-    - Soft Skills: Problem Solving, Self Learning, Communication.
-- Projects:
-    - SmartClass: A full-stack attendance management system using Python, Flask, OpenCV, and MySQL. Features QR scanning, face recognition, and reporting.
-- Contact:
-    - Email: siddharthagummadi1605@gmail.com
-    - LinkedIn: linkedin.com/in/siddhartha-gummadi-7951042b8
-    - GitHub: github.com/siddharthagummadi
-- Quote: "Knowledge is the greatest wealth."
-`;
+// Helper to get portfolio data as string for AI context
+function getPortfolioContext() {
+  try {
+    const dataPath = path.join(__dirname, 'assets', 'data', 'portfolio.json');
+    const rawData = fs.readFileSync(dataPath, 'utf8');
+    return rawData;
+  } catch (error) {
+    console.error("Error reading portfolio data for AI:", error);
+    return "Error loading portfolio data.";
+  }
+}
 
 app.post('/api/chat', async (req, res) => {
   const { message, history } = req.body;
@@ -48,11 +41,33 @@ app.post('/api/chat', async (req, res) => {
 
   try {
     const model = genAI.getGenerativeModel({ model: "gemini-flash-latest" });
+    const portfolioData = getPortfolioContext();
+    const currentDate = new Date().toLocaleDateString('en-IN', { timeZone: 'Asia/Kolkata' });
 
     const chat = model.startChat({ 
       history: [
-        { role: "user", parts: [{ text: `You are Sarathi, Siddhartha's personal AI assistant. Use this data: ${PORTFOLIO_DATA}. Answer questions about Siddhartha's background, skills, and projects concisely.` }] },
-        { role: "model", parts: [{ text: "Understood. I am Sarathi. I will help visitors learn about Siddhartha." }] },
+        { 
+          role: "user", 
+          parts: [{ text: `You are Sarathi, the intelligent AI guide for Siddhartha Gummadi's portfolio. 
+
+**Current Context Date**: ${currentDate}
+
+**Your Persona**: A blend of a Modern Tech Visionary and a Wise Vedic Guide. You embody the spirit of: "Vidyā Dhanaṁ Sarva-Dhana-Pradhānam" (Knowledge is the greatest wealth).
+
+**Primary Source of Truth**:
+Below is the LIVE, up-to-date portfolio data of Siddhartha Gummadi. ALWAYS prioritize this data over any internal knowledge:
+${portfolioData}
+
+**Key Highlights**:
+1. **Academic**: Siddhartha is a CSE student at AVNIET specializing in AI & ML.
+2. **Projects**: Flagship projects are SmartClass and Dhruva.
+3. **Certifications**: Recently earned 8 key certifications from IBM, Google, HP, and Microsoft.
+
+**Interaction Guidelines**:
+1. **Tone**: Helpful, humble, and futuristic. Use occasional greetings like "Namaste".
+2. **Markdown**: Always use Markdown. Use **bold** for keywords and bullet points for lists.` }] 
+        },
+        { role: "model", parts: [{ text: "Pranam! I am Sarathi, Siddhartha's AI assistant. I have synchronized with his latest data and am ready to assist you." }] },
         ...(history || [])
       ]
     });
@@ -64,7 +79,6 @@ app.post('/api/chat', async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
-
 app.listen(port, () => {
   console.log(`Local server running at http://localhost:${port}`);
   console.log(`Make sure GEMINI_API_KEY is set in your .env file!`);
