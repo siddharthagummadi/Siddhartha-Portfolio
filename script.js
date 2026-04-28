@@ -41,12 +41,9 @@ const reveals = document.querySelectorAll('.reveal');
 
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      revealObserver.unobserve(entry.target);
-    }
+    if (entry.isIntersecting) entry.target.classList.add('visible');
   });
-}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+}, { threshold: 0.1 });
 
 reveals.forEach(el => revealObserver.observe(el));
 
@@ -56,16 +53,59 @@ const lightStyle = document.createElement('style');
 lightStyle.id = 'light-overrides';
 lightStyle.textContent = `
   :root {
-    --clr-bg:      #f4f6fb;
-    --clr-surface: #e8ecf5;
+    --clr-bg:      #fdfdff;
+    --clr-surface: #f0f4f9;
     --clr-card:    #ffffff;
-    --clr-border:  rgba(99,102,241,.18);
-    --clr-text:    #1e1e35;
-    --clr-muted:   #5a6282;
-    --clr-white:   #1e1e35;
+    --clr-border:  rgba(0, 0, 0, 0.06);
+    --clr-text:    #1a1f36;
+    --clr-muted:   #4f566b;
+    --clr-white:   #000000;
+    --glow: 0 10px 30px rgba(99, 102, 241, 0.08);
   }
-  .navbar, .navbar-menu { background: rgba(244,246,251,.9) !important; }
-  .project-img-placeholder { background: linear-gradient(135deg,rgba(99,102,241,.08),rgba(168,85,247,.08)); }
+  
+  body { background: var(--clr-bg); }
+  .star-background { opacity: 0.05; pointer-events: none; }
+  
+  .navbar, .navbar-menu { 
+    background: rgba(253, 253, 255, 0.8) !important; 
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  .section-navy { background: #f8fafc; }
+  
+  .timeline-content, .skill-card, .project-card {
+    background: #ffffff !important;
+    border: 1px solid rgba(0, 0, 0, 0.05) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03) !important;
+    backdrop-filter: none !important;
+  }
+
+  .timeline-content:hover, .skill-card:hover, .project-card:hover {
+    box-shadow: 0 12px 40px rgba(99, 102, 241, 0.12) !important;
+    border-color: var(--clr-primary) !important;
+  }
+
+  .timeline-dot { background: #fff !important; }
+  .timeline::before { opacity: 0.2; }
+
+  .project-tag {
+    background: #f1f5f9;
+    border-color: rgba(0,0,0,0.05);
+    color: #475569;
+  }
+
+  .project-link.gh {
+    background: #f8fafc;
+    border-color: rgba(0,0,0,0.1);
+  }
+
+  .contact-chip {
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  }
+
+  .hero-greeting { background: #f1f5f9; padding: 4px 12px; border-radius: 20px; }
+  .logo-text { background: linear-gradient(135deg, #4f46e5, #7c3aed); -webkit-background-clip: text; }
 `;
 
 let isLight = false;
