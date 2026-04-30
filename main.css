@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700;800&family=Medula+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700;800&family=Syncopate:wght@400;700&family=Medula+One&display=swap');
 
 :root {
   --clr-primary: #06b6d4;
@@ -1413,7 +1413,7 @@ a {
   }
 }
 
-/* Immersive Galaxy Splash Screen (Pure CSS) */
+/* Immersive Splash Screen Background (Canvas-Powered) */
 #splash-screen {
   position: fixed;
   inset: 0;
@@ -1424,7 +1424,7 @@ a {
   align-items: center;
   justify-content: center;
   z-index: 10001; 
-  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.8s;
+  transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), visibility 1s;
   overflow: hidden;
 }
 
@@ -1434,8 +1434,7 @@ a {
   pointer-events: none;
 }
 
-/* Deep Space Background */
-.splash-bg-blobs {
+#splash-canvas {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -1444,64 +1443,12 @@ a {
   background: radial-gradient(circle at center, #050a1f 0%, #00020a 100%);
 }
 
-/* Multi-layered Nebula Galaxy */
-.splash-bg-blobs::before {
-  content: '';
-  position: absolute;
-  inset: -20%;
-  background: 
-    radial-gradient(circle at 30% 40%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 70% 60%, rgba(168, 85, 247, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.05) 0%, transparent 70%);
-  filter: blur(80px);
-  animation: galaxyRotate 60s infinite linear;
-}
-
-@keyframes galaxyRotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-.starfield {
+.splash-overlay {
   position: absolute;
   inset: 0;
   z-index: 1;
-}
-
-.star {
-  position: absolute;
-  width: var(--size);
-  height: var(--size);
-  background: #fff;
-  border-radius: 50%;
-  opacity: 0.3;
-  animation: twinkle 3s infinite ease-in-out;
-  animation-delay: var(--delay);
-}
-
-@keyframes twinkle {
-  0%, 100% { opacity: 0.3; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.3); }
-}
-
-.orbital-loom {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  opacity: 0.15;
-  transform: scale(1.2);
+  background: radial-gradient(circle at center, transparent 30%, rgba(0, 2, 10, 0.6) 100%);
   pointer-events: none;
-}
-
-.orbital-loom svg { width: 100%; height: 100%; }
-.orbit { fill: none; stroke: rgba(255, 255, 255, 0.05); stroke-width: 0.05; }
-.planet { fill: var(--clr-primary); filter: drop-shadow(0 0 5px var(--clr-primary)); }
-.planet-1 { animation: orbitRotate 20s linear infinite; transform-origin: center; }
-.planet-2 { animation: orbitRotate 35s linear infinite reverse; transform-origin: center; fill: var(--clr-secondary); }
-
-@keyframes orbitRotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
 }
 
 .splash-content {
@@ -1511,32 +1458,35 @@ a {
   align-items: center;
   position: relative;
   z-index: 10;
+  padding: 0 20px;
 }
 
 .splash-text {
   font-family: 'Syncopate', sans-serif;
-  font-size: clamp(16px, 4vw, 32px);
+  font-size: clamp(18px, 5vw, 36px);
   font-weight: 700;
   color: var(--clr-white);
-  letter-spacing: 1em;
+  letter-spacing: 0.8em;
   text-transform: uppercase;
-  margin-bottom: 20px;
-  text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+  margin-bottom: 24px;
+  text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
   animation: fadeInText 2s ease forwards;
+  opacity: 0;
 }
 
 @keyframes fadeInText {
-  from { opacity: 0; transform: translateY(10px); }
+  from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 .splash-loader {
-  width: 200px;
-  height: 2px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
+  width: 240px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.2);
 }
 
 .splash-loader::after {
@@ -1546,9 +1496,9 @@ a {
   left: 0;
   height: 100%;
   width: 100%;
-  background: linear-gradient(90deg, transparent, var(--clr-primary), transparent);
+  background: linear-gradient(90deg, transparent, var(--clr-primary), var(--clr-secondary), transparent);
   transform: translateX(-100%);
-  animation: loaderProgress 2s infinite ease-in-out;
+  animation: loaderProgress 2.5s infinite ease-in-out;
 }
 
 @keyframes loaderProgress {
@@ -1557,6 +1507,6 @@ a {
 }
 
 @media (max-width: 768px) {
-  .splash-text { letter-spacing: 0.3em; font-size: 14px; }
-  .orbital-loom { transform: scale(0.8); }
+  .splash-text { letter-spacing: 0.4em; font-size: 16px; }
+  .splash-loader { width: 180px; }
 }

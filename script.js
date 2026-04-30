@@ -223,12 +223,142 @@ async function loadPortfolioData() {
 // Start loading
 loadPortfolioData();
 
+// --- High-End Splash Background Engine ---
+class SplashBackground {
+  constructor() {
+    this.canvas = document.getElementById('splash-canvas');
+    if (!this.canvas) return;
+    this.ctx = this.canvas.getContext('2d');
+    this.particles = [];
+    this.numberOfParticles = window.innerWidth < 768 ? 150 : 350;
+    this.mouse = { x: 0, y: 0, targetX: 0, targetY: 0 };
+    this.layers = [
+      { count: this.numberOfParticles * 0.6, speed: 0.2, depth: 0.1, size: [0.5, 1.5], color: 'rgba(255, 255, 255, 0.3)' }, // Far
+      { count: this.numberOfParticles * 0.3, speed: 0.5, depth: 0.4, size: [1.5, 3], color: 'rgba(6, 182, 212, 0.5)' },  // Mid
+      { count: this.numberOfParticles * 0.1, speed: 1.2, depth: 1.2, size: [40, 80], color: 'rgba(99, 102, 241, 0.05)', blur: 40 } // Near
+    ];
+    this.streams = [];
+    this.init();
+    this.animate();
+    window.addEventListener('resize', () => this.resize());
+    window.addEventListener('mousemove', (e) => this.handleMouseMove(e));
+  }
+
+  init() {
+    this.resize();
+    this.particles = [];
+    this.layers.forEach((layer, layerIndex) => {
+      for (let i = 0; i < layer.count; i++) {
+        this.particles.push({
+          x: Math.random() * this.canvas.width,
+          y: Math.random() * this.canvas.height,
+          vx: (Math.random() - 0.5) * layer.speed,
+          vy: (Math.random() - 0.5) * layer.speed,
+          size: Math.random() * (layer.size[1] - layer.size[0]) + layer.size[0],
+          color: layer.color,
+          depth: layer.depth,
+          blur: layer.blur || 0,
+          layerIndex
+        });
+      }
+    });
+
+    // Initialize Energy Streams
+    this.streams = [];
+    for (let i = 0; i < 5; i++) {
+      this.createStream();
+    }
+  }
+
+  createStream() {
+    this.streams.push({
+      x: Math.random() * this.canvas.width,
+      y: Math.random() * this.canvas.height,
+      length: Math.random() * 200 + 100,
+      speed: Math.random() * 2 + 1,
+      opacity: Math.random() * 0.2 + 0.05
+    });
+  }
+
+  resize() {
+    this.canvas.width = window.innerWidth;
+    this.canvas.height = window.innerHeight;
+  }
+
+  handleMouseMove(e) {
+    this.mouse.targetX = (e.clientX - window.innerWidth / 2) * 0.05;
+    this.mouse.targetY = (e.clientY - window.innerHeight / 2) * 0.05;
+  }
+
+  animate() {
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    
+    // Smooth mouse follow
+    this.mouse.x += (this.mouse.targetX - this.mouse.x) * 0.05;
+    this.mouse.y += (this.mouse.targetY - this.mouse.y) * 0.05;
+
+    // Draw Particles
+    this.particles.forEach(p => {
+      const offsetX = this.mouse.x * p.depth;
+      const offsetY = this.mouse.y * p.depth;
+      p.x += p.vx;
+      p.y += p.vy;
+
+      if (p.x < -100) p.x = this.canvas.width + 100;
+      if (p.x > this.canvas.width + 100) p.x = -100;
+      if (p.y < -100) p.y = this.canvas.height + 100;
+      if (p.y > this.canvas.height + 100) p.y = -100;
+
+      this.ctx.beginPath();
+      if (p.blur > 0) {
+        this.ctx.filter = `blur(${p.blur}px)`;
+      } else {
+        this.ctx.filter = 'none';
+      }
+      this.ctx.arc(p.x + offsetX, p.y + offsetY, p.size, 0, Math.PI * 2);
+      this.ctx.fillStyle = p.color;
+      this.ctx.fill();
+    });
+
+    // Draw Energy Streams
+    this.ctx.filter = 'none';
+    this.streams.forEach((s, index) => {
+      s.x -= s.speed;
+      s.y += s.speed * 0.5;
+
+      if (s.x < -s.length || s.y > this.canvas.height + s.length) {
+        this.streams.splice(index, 1);
+        this.createStream();
+        // Reset position to top/right
+        const newStream = this.streams[this.streams.length - 1];
+        newStream.x = this.canvas.width + Math.random() * 200;
+        newStream.y = Math.random() * this.canvas.height - 200;
+      }
+
+      const gradient = this.ctx.createLinearGradient(s.x, s.y, s.x + s.length, s.y - s.length * 0.5);
+      gradient.addColorStop(0, `rgba(6, 182, 212, ${s.opacity})`);
+      gradient.addColorStop(1, 'rgba(6, 182, 212, 0)');
+
+      this.ctx.beginPath();
+      this.ctx.strokeStyle = gradient;
+      this.ctx.lineWidth = 1;
+      this.ctx.moveTo(s.x, s.y);
+      this.ctx.lineTo(s.x + s.length, s.y - s.length * 0.5);
+      this.ctx.stroke();
+    });
+
+    requestAnimationFrame(() => this.animate());
+  }
+}
+
 // --- Splash Screen Logic ---
 window.addEventListener('DOMContentLoaded', () => {
   const splash = document.getElementById('splash-screen');
   if (splash) {
-    // Minimum time to show splash (1s for a snappier experience)
-    const minDisplayTime = 1000;
+    // Initialize High-End Background
+    new SplashBackground();
+
+    const minDisplayTime = 1500; // Increased for better impact
     const startTime = Date.now();
 
     const hideSplash = () => {
@@ -238,15 +368,12 @@ window.addEventListener('DOMContentLoaded', () => {
 
       setTimeout(() => {
         splash.classList.add('fade-out');
-        // Remove from DOM after fade animation (0.8s in CSS)
         setTimeout(() => {
           splash.remove();
-        }, 800);
+        }, 1000); // Match CSS transition
       }, remainingTime);
     };
 
-    // If page is fully loaded before minDisplayTime, hide after minDisplayTime
-    // If it takes longer, hide as soon as it's loaded
     if (document.readyState === 'complete') {
       hideSplash();
     } else {
