@@ -83,7 +83,7 @@
       "tags": ["Python", "PennyLane", "Scikit-Learn", "FPDF2"],
       "description": "A hybrid classical-quantum engine featuring an automated diagnostic pipeline, real-time benchmarking, and professional medical report generation in PDF format for clinical diagnostics.",
       "github": "https://github.com/siddharthagummadi/HQC-MDF.git",
-      "live": "https://hqc-mdf.onrender.com"
+      "demo": "https://youtube.com/link-to-your-video"
     }
   ],
   "certifications": [

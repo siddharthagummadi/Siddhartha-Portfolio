@@ -182,9 +182,15 @@ async function loadPortfolioData() {
               <a class="project-link gh" href="${project.github}" target="_blank" rel="noopener">
                 <i class="fa-brands fa-github"></i> GitHub
               </a>
-              <a class="project-link live" href="${project.live}" target="_blank" rel="noopener">
-                <i class="fa-solid fa-arrow-up-right-from-square"></i> Live
-              </a>
+              ${project.demo ? `
+                <a class="project-link live" href="${project.demo}" target="_blank" rel="noopener">
+                  <i class="fa-solid fa-play"></i> View Demo
+                </a>
+              ` : `
+                <a class="project-link live" href="${project.live}" target="_blank" rel="noopener">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i> Live
+                </a>
+              `}
             </div>
           </div>
         </article>
