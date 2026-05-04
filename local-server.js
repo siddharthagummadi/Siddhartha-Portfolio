@@ -60,7 +60,7 @@ ${portfolioData}
 
 **Key Highlights**:
 1. **Academic**: Siddhartha is a CSE student at AVNIET specializing in AI & ML.
-2. **Projects**: Flagship projects are SmartClass and Dhruva.
+2. **Projects**: Flagship projects are **HQC-MDF** (Hybrid Quantum Medical Diagnostics), SmartClass and Dhruva.
 3. **Certifications**: Recently earned 8 key certifications from IBM, Google, HP, and Microsoft.
 
 **Interaction Guidelines**:

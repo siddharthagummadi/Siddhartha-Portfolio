@@ -77,6 +77,13 @@
       "description": "A premium, wellness-grade AI guide grounded in ancient wisdom. Features a custom deep-space UI, session history, native performance metrics, and intelligent dharmic guidance powered by the Gemini API.",
       "github": "https://github.com/siddharthagummadi/Dhruva.git",
       "live": "https://dhruva-ucyv.onrender.com"
+    },
+    {
+      "name": "HQC-MDF",
+      "tags": ["Python", "PennyLane", "Scikit-Learn", "FPDF2"],
+      "description": "A high-precision hybrid classical-quantum engine featuring an automated diagnostic pipeline, quantum-classical integration, real-time benchmarking, and professional medical report generation in PDF format for advanced clinical analytics.",
+      "github": "https://github.com/siddharthagummadi/HQC-MDF.git",
+      "live": "https://hqc-mdf.onrender.com"
     }
   ],
   "certifications": [
