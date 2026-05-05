@@ -201,17 +201,13 @@ async function loadPortfolioData() {
     const certGrid = document.querySelector('.cert-grid');
     if (certGrid) {
       certGrid.innerHTML = data.certifications.map(cert => `
-        <article class="project-card reveal">
+        <article class="project-card reveal cert-card">
+          <a href="${cert.link}" target="_blank" rel="noopener" class="card-link-overlay" aria-label="View ${cert.title} certificate"></a>
           <div class="project-body">
             <div class="project-tags">
               <span class="project-tag">${cert.org}</span>
             </div>
             <h3 class="project-name">${cert.title}</h3>
-            <div class="project-links">
-              <a class="project-link live" href="${cert.link}" target="_blank" rel="noopener">
-                <i class="fa-solid fa-arrow-up-right-from-square"></i> View Certificate
-              </a>
-            </div>
           </div>
         </article>
       `).join('');

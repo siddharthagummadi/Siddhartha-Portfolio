@@ -809,13 +809,15 @@ a {
 }
 
 @media (max-width: 992px) {
-  .projects-grid {
+  .projects-grid,
+  .cert-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 640px) {
-  .projects-grid {
+  .projects-grid,
+  .cert-grid {
     grid-template-columns: 1fr;
   }
 }
@@ -828,6 +830,17 @@ a {
 }
 
 /* Compact layout for Certification Cards */
+.cert-card {
+  position: relative;
+  cursor: pointer;
+}
+
+.card-link-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+}
+
 .cert-grid .project-img-placeholder {
   height: 180px; /* Increased from 120px to provide more "length" */
 }
