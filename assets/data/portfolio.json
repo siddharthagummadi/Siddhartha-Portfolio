@@ -20,18 +20,20 @@
     {
       "year": "2023 — 2027",
       "degree": "B.Tech in CSE (AI & ML)",
-      "institution": "AVN Institute of Engineering and Technology, Ibrahimpatnam, Hyderabad"
+      "institution": "AVN Institute of Engineering and Technology, Ibrahimpatnam, Hyderabad",
+      "description": "Currently pursuing a Bachelor of Technology in Computer Science Engineering, specializing in AI and Machine Learning. Focused on mastering core concepts in data science, intelligent systems, and scalable software architecture."
     },
     {
       "year": "2021 — 2023",
       "degree": "Intermediate (MPC)",
-      "institution": "Vidya Vikas Junior College, Bodhan, Nizamabad"
+      "institution": "Vidya Vikas Junior College, Bodhan, Nizamabad",
+      "description": "Completed higher secondary education with a focus on Mathematics, Physics, and Chemistry. Developed strong analytical and problem-solving skills, laying a solid foundation for future engineering studies and technical development."
     },
-    
     {
       "year": "2020 — 2021",
       "degree": "Secondary School Certificate (SSC)",
-      "institution": "Matrix High School, Varni, Nizamabad"
+      "institution": "Matrix High School, Varni, Nizamabad",
+      "description": "Successfully completed secondary education with a strong academic record. This formative period cultivated my initial interest in science and technology, encouraging a disciplined approach to learning and academic excellence."
     }
   ],
   "skills": [
