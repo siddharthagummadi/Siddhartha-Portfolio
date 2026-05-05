@@ -134,7 +134,7 @@ async function loadPortfolioData() {
       timeline.innerHTML = data.education.map((edu, index) => `
         <div class="timeline-item reveal" style="transition-delay: ${index * 0.1}s">
           <div class="timeline-dot"></div>
-          <div class="timeline-content" onclick="openEduModal(${index})">
+          <div class="timeline-content">
             <span class="timeline-date">${edu.year}</span>
             <h3 class="timeline-title">${edu.degree}</h3>
             <p class="timeline-inst">${edu.institution}</p>
@@ -399,36 +399,4 @@ document.addEventListener('mousemove', (e) => {
   });
 });
 
-// --- Education Modal Logic ---
-const eduModal = document.getElementById('edu-modal');
-const modalClose = eduModal?.querySelector('.modal-close');
 
-window.openEduModal = function(index) {
-  const edu = window.portfolioData?.education[index];
-  if (!edu || !eduModal) return;
-
-  eduModal.querySelector('.modal-year').textContent = edu.year;
-  eduModal.querySelector('.modal-title').textContent = edu.degree;
-  eduModal.querySelector('.modal-institution').textContent = edu.institution;
-  eduModal.querySelector('.modal-description').textContent = edu.description;
-
-  eduModal.classList.add('active');
-  eduModal.setAttribute('aria-hidden', 'false');
-  document.body.style.overflow = 'hidden'; 
-};
-
-window.closeEduModal = function() {
-  if (!eduModal) return;
-  eduModal.classList.remove('active');
-  eduModal.setAttribute('aria-hidden', 'true');
-  document.body.style.overflow = '';
-};
-
-modalClose?.addEventListener('click', closeEduModal);
-eduModal?.addEventListener('click', (e) => {
-  if (e.target === eduModal) closeEduModal();
-});
-
-window.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') closeEduModal();
-});
